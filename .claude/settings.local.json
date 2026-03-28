@@ -24,7 +24,14 @@
       "Bash(cp \"personal-info/Resume/Resume_YH.pdf\" public/files/)",
       "Bash(cp \"personal-info/Master Paper/Brain-Detection.pdf\" public/files/)",
       "Bash(cp \"personal-info/Master Paper/Swin-UNet.pdf\" public/files/)",
-      "Bash(cp \"personal-info/personal picture/avatar.png\" public/)"
+      "Bash(cp \"personal-info/personal picture/avatar.png\" public/)",
+      "Bash(mv portfolio-site/index.html .)",
+      "Bash(mv portfolio-site/package.json .)",
+      "Bash(mv portfolio-site/package-lock.json .)",
+      "Bash(mv portfolio-site/vite.config.js .)",
+      "Bash(mv portfolio-site/tailwind.config.js .)",
+      "Bash(\"G:\\\\nodejs\\\\npm.cmd\" install:*)",
+      "Bash(\"G:\\\\nodejs\\\\npx.cmd\" vite:*)"
     ]
   }
 }

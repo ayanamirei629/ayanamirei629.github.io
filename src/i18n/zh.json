@@ -1,0 +1,220 @@
+{
+  "nav": {
+    "about": "关于",
+    "education": "教育",
+    "experience": "经历",
+    "projects": "项目",
+    "activity": "活动",
+    "skills": "技能",
+    "publications": "Paper",
+    "reading": "阅读",
+    "contact": "联系"
+  },
+  "hero": {
+    "name": "胡英阁 (Yingge Hu) / Craig",
+    "title": "计算机科学研究员与数据工程师",
+    "email1": "yhu893@uwo.ca",
+    "email2": "yingge.hu@alumni.utoronto.ca",
+    "phone": "647-860-1462",
+    "location": "安大略省伦敦市 / 安大略省多伦多市",
+    "summary": "云数据工程/架构，机器学习,数据管理。",
+    "viewWork": "查看我的作品",
+    "resume": "下载简历",
+    "contactMe": "联系我"
+  },
+  "news": {
+    "title": "近期动态",
+    "subtitle": "我的学术与职业历程时间线",
+    "items": [
+      { "date": "2026年1月", "text": "在韦仕敦大学 (Western University) 数据库实验室 Mostafa Milani 教授的指导下，开展关于差分隐私的新研究。" },
+      { "date": "2025年9月", "text": "开始在韦仕敦大学攻读计算机科学理学硕士学位。" },
+      { "date": "2025年6月", "text": "毕业于多伦多大学电气与计算机工程专业。" },
+      { "date": "2025年6月", "text": "获得加拿大工程师铁戒指 (Iron Ring)。" },
+      { "date": "2025年4月", "text": "成功完成了关于心脏 MRI 去噪（使用 Restormer 和 Swin-UNet）以及脑部 MRI 肿瘤分类的深度研究项目。" },
+      { "date": "2024年9月", "text": "担任多伦多大学机器人协会 (UTRA) 网站主管。" },
+      { "date": "2023年9月", "text": "在多伦多大学 Far Data Lab 张教授的指导下，开始关于存算分离数据库系统网络瓶颈的新研究。" },
+      { "date": "2021年9月", "text": "开始在可口可乐 O2O 团队担任数据工程师实习生。" },
+      { "date": "2018年9月", "text": "志愿为《最终幻想14》(FF14) 建立绘画社区并更新每周活动。" }
+    ]
+  },
+  "education": {
+    "title": "教育背景",
+    "subtitle": "学术背景与资质",
+    "schools": [
+      {
+        "name": "韦仕敦大学 (Western University)",
+        "location": "安大略省伦敦市",
+        "period": "2025年9月 – 2026年9月",
+        "degree": "计算机科学理学硕士",
+        "gpa": "CGPA: 4.0",
+        "courses": "相关课程：数据管理、高级机器学习"
+      },
+      {
+        "name": "多伦多大学 (University of Toronto)",
+        "location": "安大略省多伦多市",
+        "period": "2020年9月 – 2025年6月",
+        "degree": "计算机工程应用科学学士",
+        "gpa": "",
+        "courses": "研究方向：存算分离数据库、超大规模数据处理、机器学习"
+      }
+    ]
+  },
+  "experience": {
+    "title": "研究与工作经历",
+    "subtitle": "专业与学术贡献",
+    "items": [
+      {
+        "org": "韦仕敦大学 DB Lab",
+        "role": "研究助理",
+        "period": "2026年1月 – 2026年9月",
+        "desc": "在 Mostafa Milani 教授的指导下进行差分隐私研究，探索数据管理系统中的隐私保护机制。",
+        "bullets": []
+      },
+      {
+        "org": "多伦多大学 Far Data Lab",
+        "role": "研究助理",
+        "period": "2023年9月 – 2025年6月",
+        "desc": "与张启震教授合作进行最前沿的超大规模数据管理研究，专注于存算分离数据库系统和网络性能分析。",
+        "bullets": [
+          "构建了基于 eBPF 的延迟追踪工具，用于 TCP/IP/MAC 各层的跨层开销分析，应用于 TiDB 事务场景。",
+          "在 CloudLab 上以存算分离架构部署和评估 TiDB，研究带宽和存储位置对分布式事务性能的影响。",
+          "通过源代码和论文深入研究 TiDB 事务内部机制，并对代码库进行插桩以测量关键执行路径的延迟。",
+          "通过 Prometheus 和仪表盘指标指导配置调优，提升了 TPC-C 基准测试性能，包括使用 RAMDisk 支持存储的实验。"
+        ]
+      },
+      {
+        "org": "可口可乐 (BI 团队)",
+        "role": "数据工程师实习生",
+        "period": "2021年9月 – 2022年8月",
+        "desc": "开发存储过程并使用 Azure 上的 Databricks 构建管道以监控销售业绩。使用 Power BI 进行性能和用户行为分析，并优化了 Azure Blob Storage 上的数据传输方法。",
+        "bullets": []
+      },
+      {
+        "org": "多伦多大学机器人协会 (UTRA)",
+        "role": "网站主管",
+        "period": "2024年10月 – 2025年6月",
+        "desc": "使用 HTML5 重新设计并现代化了俱乐部网站。",
+        "bullets": []
+      }
+    ]
+  },
+  "projects": {
+    "title": "项目",
+    "subtitle": "精选技术项目与研究工作",
+    "items": [
+      {
+        "name": "心脏 MRI 去噪与脑肿瘤分类",
+        "tag": "深度学习",
+        "tech": "Python, PyTorch, Restormer, Swin-UNet, MaxViT, Grad-CAM++",
+        "desc": "开发了用于心脏 MRI 的去噪管道，使用代理干净/嘈杂图像对（模拟混合高斯和莱斯噪声）来克服缺乏成对临床数据的问题。在 PSNR 和 SSIM 方面优于经典的 BM3D 算法。进一步评估了代理训练的 Restormer 对使用 MaxViT 进行下游 4 类脑肿瘤分类的影响，利用 Grad-CAM++ 和定量注意力指标来分析空间证据的使用情况。"
+      },
+      {
+        "name": "智能腕带睡眠检测",
+        "tag": "机器学习 / 时间序列",
+        "tech": "Python, RCNN",
+        "desc": "开发了一种利用加速度计数据的睡眠检测模型，实现结合 CNN 和 RNN 的 RCNN 架构进行时间序列分析。"
+      },
+      {
+        "name": "游客地图：GIS 应用程序",
+        "tag": "系统",
+        "tech": "C++, 敏捷开发 (Agile)",
+        "desc": "构建了一个地理信息系统 (GIS)，具有路径高亮显示功能，并实现了用于最短路径解决方案的 A* 算法。"
+      }
+    ]
+  },
+  "activity": {
+    "title": "活动",
+    "subtitle": "志愿服务与社区参与",
+    "items": [
+      {
+        "name": "多伦多大学机器人协会",
+        "tag": "网站主管",
+        "tech": "vuepress",
+        "desc": "2024-2025年期间志愿担任 UTRA 网站主管。"
+      },
+      {
+        "name": "游戏社区支持者",
+        "tag": "Web 开发",
+        "tech": "h5",
+        "desc": "我志愿设计和更新游戏社区活动，作为存档保留以展示过去的 Web 开发工作。",
+        "archiveLink": true
+      }
+    ]
+  },
+  "publications": {
+    "title": "研究论文",
+    "subtitle": "我的研究与项目报告，可供下载",
+    "items": [
+      {
+        "name": "脑部 MRI 肿瘤检测与分类",
+        "desc": "使用 MaxViT 结合 Grad-CAM++ 进行可解释性分析的深度学习脑肿瘤分类方法。",
+        "file": "Brain-Detection.pdf"
+      },
+      {
+        "name": "使用 Swin-UNet 的心脏 MRI 去噪",
+        "desc": "使用 Swin-UNet 架构的代理训练去噪管道，克服了缺乏成对临床数据的问题。",
+        "file": "Swin-UNet.pdf"
+      },
+      {
+        "name": "使用 Restormer 的心脏 MRI 去噪",
+        "desc": "使用 Restormer 架构的代理训练去噪管道，克服了缺乏成对临床数据的问题。",
+        "file": "Restormer.pdf"
+      }
+    ]
+  },
+  "skills": {
+    "title": "技能",
+    "subtitle": "技术能力与专长",
+    "categories": [
+      { "name": "编程语言", "items": "C, C++, Python" },
+      { "name": "云与平台", "items": "Azure, GCP, Databricks" },
+      { "name": "数据工程", "items": "数据管道 (Data Pipeline), ETL, HiveSQL, PySpark" },
+      { "name": "数据库概念", "items": "分布式数据库, 存算分离数据库 (Disaggregated Database)" },
+      { "name": "机器学习平台", "items": "PyTorch" },
+      { "name": "机器学习概念", "items": "计算机视觉 (Computer Vision), 可解释性 AI (Explainable AI)" }
+    ]
+  },
+  "personal": {
+    "title": "个人特质",
+    "subtitle": "代码之外",
+    "items": [
+      "分析能力强且注重细节。",
+      "对数据库系统、查询优化以及技术与金融市场的交叉领域具有浓厚兴趣。",
+      "具有良好的审美，为人谦逊。",
+      "擅长打乒乓球。"
+    ]
+  },
+  "papers": {
+    "title": "近期论文阅读",
+    "subtitle": "我正在研读的学术论文",
+    "items": [
+      "Attention Residuals",
+      "Calibrating Noise to Sensitivity in Private Data Analysis",
+      "The Algorithmic Foundations of Differential Privacy",
+      "Mechanism Design via Differential Privacy",
+      "Attribute Privacy: Framework and Mechanisms",
+      "Pufferfish: A Framework for Mathematical Privacy Definitions",
+      "Blowfish Privacy: Tuning Privacy-Utility Trade-offs using Policies",
+      "No Free Lunch in Data Privacy",
+      "Fairness through Awareness",
+      "Differentially Private Fair Learning",
+      "Label Differential Privacy and Private Training Data Release"
+    ]
+  },
+  "books": {
+    "title": "近期书籍阅读",
+    "subtitle": "塑造我思维的书籍",
+    "items": [
+      { "en": "别让我走", "author": "石黑一雄" },
+      { "en": "麦田里的守望者", "author": "J.D. 塞林格" },
+      { "en": "解忧杂货店", "author": "东野圭吾" },
+      { "en": "心", "author": "夏目漱石" },
+      { "en": "湖", "author": "川端康成" },
+      { "en": "雪国", "author": "川端康成" }
+    ]
+  },
+  "footer": {
+    "copyright": "胡英阁 版权所有",
+    "builtWith": "使用 React、Tailwind CSS 和 Framer Motion 构建"
+  }
+}
