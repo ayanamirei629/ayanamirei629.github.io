@@ -1,0 +1,225 @@
+{
+  "nav": {
+    "about": "About",
+    "education": "Education",
+    "experience": "Experience",
+    "projects": "Projects",
+    "activity": "Activities",
+    "skills": "Skills",
+    "publications": "Paper",
+    "reading": "Reading",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Yingge Hu / Craig",
+    "title": "Computer Science Researcher & Data Engineer",
+    "email1": "yhu893@uwo.ca",
+    "email2": "yingge.hu@mail.utoronto.ca",
+    "phone": "647-860-1462",
+    "location": "London, ON / Toronto, ON",
+    "summary": "Specializing in Database Architecture, Disaggregated Database, Data Management，Machine Learning. Passionate about bridging theoretical concepts with high-performance computing to solve complex data challenges.",
+    "viewWork": "View My Work",
+    "resume": "Download Resume",
+    "contactMe": "Contact Me"
+  },
+  "news": {
+    "title": "Recent Updates",
+    "subtitle": "A timeline of my academic and professional journey",
+    "items": [
+      { "date": "Jan 2026", "text": "Started new research on Differential Privacy under the guidance of Professor Mostafa Milani at Western University's DB Lab." },
+      { "date": "Sept 2025", "text": "Began Master of Science in Computer Science at Western University." },
+      { "date": "June 2025", "text": "Graduated from University of Toronto in Electrical and Computer Engineering." },
+      { "date": "June 2025", "text": "Received the Iron Ring for Canadian Engineering." },
+      { "date": "April 2025", "text": "Successfully completed extensive research projects on Cardiac MRI Denoising (using Restormer and Swin-UNet) and Brain MRI Tumor Classification." },
+      { "date": "Sept 2024", "text": "Became Web Director for University of Toronto Robotics Association (UTRA)." },
+      { "date": "Sept 2023", "text": "Started new research on Network Bottleneck for Disaggregated Database systems under the guidance of Professor Qizhen Zhang at University of Toronto Far Data Lab." },
+      { "date": "Sept 2021", "text": "Started Data Engineer intern at Coca Cola in the O2O team." },
+      { "date": "Sept 2018", "text": "Volunteered to build a painting community for FF14 and updated weekly events." }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "Academic background and qualifications",
+    "schools": [
+      {
+        "name": "Western University",
+        "location": "London, ON",
+        "period": "Sept 2025 – Sept 2026",
+        "degree": "Master of Science in Computer Science",
+        "gpa": "CGPA: 4.0",
+        "courses": "Relevant Coursework: Data Management, Advanced Machine Learning"
+      },
+      {
+        "name": "University of Toronto",
+        "location": "Toronto, ON",
+        "period": "Sept 2020 – June 2025",
+        "degree": "Bachelor of Applied Science in Computer Engineering",
+        "gpa": "",
+        "courses": "Focus: Disaggregated Database, Hyperscale Data Processing, Machine Learning"
+      }
+    ]
+  },
+  "experience": {
+    "title": "Research & Work Experience",
+    "subtitle": "Professional and academic contributions",
+    "items": [
+      {
+        "org": "Western University DB Lab",
+        "role": "Research Assistant",
+        "period": "Jan 2026 – Sept 2026",
+        "desc": "Conducting research on Differential Privacy under the guidance of Professor Mostafa Milani, investigating privacy-preserving mechanisms for data management systems.",
+        "bullets": []
+      },
+      {
+        "org": "University of Toronto Far Data Lab",
+        "role": "Research Assistant",
+        "period": "Sept 2023 – June 2025",
+        "desc": "Collaborated with Professor Qizhen Zhang on state-of-the-art Hyperscale Data Management, focusing on disaggregated database systems and network performance analysis.",
+        "bullets": [
+          "Built an eBPF-based latency tracing tool for TCP/IP/MAC layers to analyze cross-layer overhead in TiDB transactions.",
+          "Deployed and evaluated TiDB on CloudLab in disaggregated data settings, studying the impact of bandwidth and storage placement on distributed transaction performance.",
+          "Investigated TiDB transaction internals through source code and papers, and instrumented the codebase to measure latency across critical execution paths.",
+          "Improved TPC-C benchmark performance through configuration tuning source code guided by Prometheus and dashboard metrics, including experiments with RAMDisk-backed storage."
+        ]
+      },
+      {
+        "org": "Coca-Cola Beverages (BI Team)",
+        "role": "Data Engineer Intern",
+        "period": "Sept 2021 – Aug 2022",
+        "desc": "Developed storage procedures and built pipelines to monitor sales performance using Databricks on Azure. Conducted performance and user behavior analysis with Power BI, and optimized data transfer methods on Azure Blob Storage.",
+        "bullets": []
+      }
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Selected technical projects and research work",
+    "items": [
+      {
+        "name": "Research Assistent",
+        "tag": "Differential Privacy",
+        "tech": "Data Management",
+        "desc": "Research in Differential Privacy related to pufferfish and blowfish framework."
+      },
+      {
+        "name": "Research Assistent",
+        "tag": "Disaggregated Database",
+        "tech": "bash, Golang, Rust",
+        "desc": "Built an eBPF-based latency tracing tool for TCP/IP/MAC layers to analyze cross-layer overhead in TiDB transactions. Deployed and evaluated TiDB on CloudLab in disaggregated data settings, studying the impact of bandwidth and storage placement on distributed transaction performance. Investigated TiDB transaction internals through source code and papers, and instrumented the codebase to measure latency across critical execution paths. Improved TPC-C benchmark performance through configuration tuning source code guided by Prometheus and dashboard metrics, including experiments with RAMDisk-backed storage."
+      },
+      {
+        "name": "Cardiac MRI Denoising & Brain Tumor Classification",
+        "tag": "Deep Learning",
+        "tech": "Python, PyTorch, Restormer, Swin-UNet, MaxViT, Grad-CAM++",
+        "desc": "Developed a denoising pipeline for cardiac MRIs using proxy clean/noisy image pairs (simulating mixed Gaussian and Rician noise) to overcome the lack of paired clinical data. Outperformed classical BM3D algorithms in PSNR and SSIM. Further evaluated the proxy-trained Restormer's effect on downstream 4-class brain tumor classification using MaxViT, utilizing Grad-CAM++ and quantitative attention metrics to analyze spatial evidence usage."
+      },
+      {
+        "name": "Sleep Detection with Smart Wristbands",
+        "tag": "ML / Time Series",
+        "tech": "Python, RCNN",
+        "desc": "Developed a sleep detection model utilizing accelerometer data, implementing an RCNN architecture combining CNN and RNN for time-series analysis."
+      },
+      {
+        "name": "Map for Tourists: GIS Application",
+        "tag": "Systems",
+        "tech": "C++, Agile",
+        "desc": "Built a Geographical Information System featuring path highlighting and the A* algorithm for shortest-path solutions."
+      }
+    ]
+  },
+  "activity": {
+    "title": "Activities",
+    "subtitle": "Volunteering and community involvement",
+    "items": [
+      {
+        "name": "University of Toronto Robotics Association",
+        "tag": "Web Director",
+        "tech": "vuepress",
+        "desc": "I volunteered as a web director for UTRA website in 2024-2025."
+      },
+      {
+        "name": "Game Community Supporter",
+        "tag": "Web Dev",
+        "tech": "h5",
+        "desc": "I volunteered design and update activities for game community, preserved as an archive to showcase past web development work.",
+        "archiveLink": true
+      }
+    ]
+  },
+  "publications": {
+    "title": "Research Papers",
+    "subtitle": "My research and project reports available for download",
+    "items": [
+      {
+        "name": "Brain MRI Tumor Detection & Classification",
+        "desc": "Deep learning approach to brain tumor classification using MaxViT with Grad-CAM++ for explainability analysis.",
+        "file": "Brain-Detection.pdf"
+      },
+      {
+        "name": "Cardiac MRI Denoising with Swin-UNet",
+        "desc": "Proxy-trained denoising pipeline for cardiac MRIs using Swin-UNet architecture, overcoming the lack of paired clinical data.",
+        "file": "Swin-UNet.pdf"
+      },
+      {
+        "name": "Cardiac MRI Denoising with Restormer",
+        "desc": "Proxy-trained denoising pipeline for cardiac MRIs using Restormer architecture, overcoming the lack of paired clinical data.",
+        "file": "Restormer.pdf"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technical competencies and expertise",
+    "categories": [
+      { "name": "Languages", "items": "C, C++, Python" },
+      { "name": "Cloud & Platforms", "items": "Azure, GCP, Databricks" },
+      { "name": "Data Engineering", "items": "Data Pipeline, ETL, HiveSQL, PySpark" },
+      { "name": "Database Concepts", "items": "Distributed Database, Disaggregated Database" },
+      { "name": "ML Platform", "items": "PyTorch" },
+      { "name": "ML Concepts", "items": "Computer Vision, Explainable AI" }
+    ]
+  },
+  "personal": {
+    "title": "Personal Characteristics",
+    "subtitle": "Beyond the code",
+    "items": [
+      "Highly analytical and detail-oriented.",
+      "Deeply interested in database systems, query optimization, and the intersection of technology and financial markets.",
+      "Appreciates good aesthetics, humble to the surroundings.",
+      "Good at table tennis."
+    ]
+  },
+  "papers": {
+    "title": "Recent Paper Reading",
+    "subtitle": "Academic papers I've been studying",
+    "items": [
+      "Attention Residuals",
+      "Calibrating Noise to Sensitivity in Private Data Analysis",
+      "The Algorithmic Foundations of Differential Privacy",
+      "Mechanism Design via Differential Privacy",
+      "Attribute Privacy: Framework and Mechanisms",
+      "Pufferfish: A Framework for Mathematical Privacy Definitions",
+      "Blowfish Privacy: Tuning Privacy-Utility Trade-offs using Policies",
+      "No Free Lunch in Data Privacy",
+      "Fairness through Awareness",
+      "Differentially Private Fair Learning",
+      "Label Differential Privacy and Private Training Data Release"
+    ]
+  },
+  "books": {
+    "title": "Recent Book Reading",
+    "subtitle": "Books that have shaped my thinking",
+    "items": [
+      { "en": "Never Let Me Go", "author": "Kazuo Ishiguro" },
+      { "en": "The Catcher in the Rye", "author": "J.D. Salinger" },
+      { "en": "The Miracles of the Namiya General Store", "author": "Keigo Higashino" },
+      { "en": "Kokoro", "author": "Natsume Sōseki" },
+      { "en": "The Lake", "author": "Kawabata Yasunari" },
+      { "en": "Snow Country", "author": "Kawabata Yasunari" }
+    ]
+  },
+  "footer": {
+    "copyright": "Yingge Hu. All rights reserved.",
+    "builtWith": "Built with React, Tailwind CSS & Framer Motion"
+  }
+}

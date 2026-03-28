@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm --version)",
+      "Bash(npx create-vite@4 . -- --template react)",
+      "Bash(npx create-vite@4 portfolio-site --template react)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(rm -f src/App.css)",
+      "Bash(npm run:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(pkill -f \"vite --port 5173\")",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(pkill -f vite)",
+      "Bash(cygpath -w /g/nodejs/node.exe)",
+      "Bash(cygpath -w \"/c/Users/Yingge Hu/Desktop/Personal website/portfolio-site/node_modules/.bin/vite\")",
+      "Bash(pkill -f \"node.*5173\")",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //F //PID 36888)",
+      "Bash(mkdir -p portfolio-site/public/archive)",
+      "Bash(cp -r index.html 404.html guide.html assets drawer event eventing update logo.png portfolio-site/public/archive/)",
+      "Bash(mkdir -p public/files)",
+      "Bash(cp \"personal-info/Resume/Resume_YH.pdf\" public/files/)",
+      "Bash(cp \"personal-info/Master Paper/Brain-Detection.pdf\" public/files/)",
+      "Bash(cp \"personal-info/Master Paper/Swin-UNet.pdf\" public/files/)",
+      "Bash(cp \"personal-info/personal picture/avatar.png\" public/)"
+    ]
+  }
+}
