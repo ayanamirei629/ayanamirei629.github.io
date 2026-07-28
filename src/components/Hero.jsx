@@ -13,6 +13,7 @@ const socials = [
 export default function Hero() {
   const { t } = useTranslation();
   const base = import.meta.env.BASE_URL;
+  const latestReport = `${base}research/ai-era-quant-report-2026-07-27.html`;
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -104,12 +105,12 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="flex flex-wrap justify-center gap-4"
           >
-            <button
-              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            <a
+              href={latestReport}
               className="px-6 py-2.5 bg-accent-500 hover:bg-accent-600 text-white rounded-lg text-sm font-medium transition-colors duration-200 shadow-lg shadow-accent-500/20"
             >
               {t('hero.viewWork')}
-            </button>
+            </a>
             <a
               href={`${base}files/Resume_YH.pdf`}
               target="_blank"

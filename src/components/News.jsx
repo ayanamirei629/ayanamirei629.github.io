@@ -1,10 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 
 export default function News() {
   const { t } = useTranslation();
   const items = t('news.items', { returnObjects: true });
+  const base = import.meta.env.BASE_URL;
 
   return (
     <SectionWrapper id="news" title={t('news.title')} subtitle={t('news.subtitle')}>
@@ -32,6 +34,17 @@ export default function News() {
                 <div className="bg-dark-800/50 border border-white/5 rounded-xl p-5 hover:border-accent-400/20 transition-all duration-300 group">
                   <span className="text-accent-400 text-xs font-medium tracking-wider uppercase">{item.date}</span>
                   <p className="text-slate-300 text-sm mt-2 leading-relaxed">{item.text}</p>
+                  {item.link && (
+                    <a
+                      href={`${base}${item.link}`}
+                      className={`mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent-400 hover:text-white transition-colors ${
+                        i % 2 === 0 ? 'md:flex-row-reverse' : ''
+                      }`}
+                    >
+                      {item.linkLabel}
+                      <ArrowUpRight size={15} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
