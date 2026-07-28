@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { FileText, BookOpen } from 'lucide-react';
-import SectionWrapper from './SectionWrapper';
 
 export default function Reading() {
   const { t } = useTranslation();

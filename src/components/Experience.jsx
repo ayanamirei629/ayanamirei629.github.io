@@ -44,6 +44,19 @@ export default function Experience() {
                   ))}
                 </ul>
               )}
+              {item.timeline && item.timeline.length > 0 && (
+                <ol className="relative mt-5 ml-14 border-l border-accent-400/20 space-y-4">
+                  {item.timeline.map((milestone, j) => (
+                    <li key={j} className="pl-5 relative">
+                      <span className="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-dark-800 border-2 border-accent-400" />
+                      <p className="text-accent-400 text-xs font-medium uppercase tracking-wider">
+                        {milestone.date}
+                      </p>
+                      <p className="mt-1 text-slate-400 text-sm leading-relaxed">{milestone.text}</p>
+                    </li>
+                  ))}
+                </ol>
+              )}
             </div>
           </motion.div>
         ))}

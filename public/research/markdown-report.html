@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Public quantitative research summary rendered from a sanitized Markdown source."
+    />
+    <title>Public Research Summary | Yingge Hu</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #080c16;
+        --surface: #101827;
+        --surface-2: #152036;
+        --line: rgba(148, 163, 184, 0.16);
+        --text: #e8eef8;
+        --muted: #91a0b8;
+        --blue: #60a5fa;
+        --cyan: #22d3ee;
+        --rose: #fb7185;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          radial-gradient(circle at 84% 2%, rgba(37, 99, 235, 0.15), transparent 28rem),
+          var(--bg);
+        color: var(--text);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        line-height: 1.7;
+      }
+
+      a {
+        color: var(--blue);
+      }
+
+      .shell {
+        width: min(980px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      header {
+        border-bottom: 1px solid var(--line);
+        background: rgba(8, 12, 22, 0.9);
+      }
+
+      .topbar {
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand,
+      .back-link,
+      .source-link {
+        text-decoration: none;
+      }
+
+      .brand {
+        color: white;
+        font-weight: 750;
+      }
+
+      .brand span {
+        color: var(--blue);
+      }
+
+      .back-link {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      main {
+        padding: 62px 0 72px;
+      }
+
+      .document-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 24px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--blue);
+        font-size: 12px;
+        font-weight: 750;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .source-link {
+        padding: 7px 11px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      article {
+        padding: clamp(24px, 5vw, 52px);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: rgba(16, 24, 39, 0.82);
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: white;
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+      }
+
+      h1 {
+        margin: 0 0 24px;
+        font-size: clamp(36px, 6vw, 58px);
+      }
+
+      h2 {
+        margin: 52px 0 18px;
+        padding-top: 4px;
+        border-top: 1px solid var(--line);
+        padding-top: 36px;
+        font-size: clamp(25px, 4vw, 34px);
+      }
+
+      h3 {
+        margin: 32px 0 14px;
+        font-size: 21px;
+      }
+
+      p {
+        margin: 16px 0;
+        color: #b9c5d8;
+      }
+
+      strong {
+        color: white;
+      }
+
+      ul,
+      ol {
+        margin: 16px 0;
+        padding-left: 24px;
+        color: #b9c5d8;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        margin: 22px 0 28px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+      }
+
+      table {
+        width: 100%;
+        min-width: 620px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: rgba(21, 32, 54, 0.82);
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      td {
+        color: #c8d3e4;
+        font-size: 14px;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .loading,
+      .error {
+        color: var(--muted);
+      }
+
+      .error {
+        color: var(--rose);
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(100% - 28px, 980px);
+        }
+
+        .document-meta {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .brand {
+          font-size: 14px;
+        }
+
+        article {
+          border-radius: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="shell topbar">
+        <a class="brand" href="/"><span>YH</span> Research Portfolio</a>
+        <a class="back-link" href="./ai-era-quant-report-2026-07-27.html">
+          &larr; Back to research brief
+        </a>
+      </div>
+    </header>
+
+    <main class="shell">
+      <div class="document-meta">
+        <p class="eyebrow">Sanitized Markdown publication</p>
+        <a class="source-link" id="source-link" href="#" download>Download Markdown</a>
+      </div>
+      <article id="content" aria-live="polite">
+        <p class="loading">Loading public research summary...</p>
+      </article>
+    </main>
+
+    <script>
+      const DOCUMENTS = {
+        macro: {
+          file: "./macro-market-decision-2026-07-27.md",
+          title: "Macro & Market Decision",
+        },
+        stocks: {
+          file: "./daily-stock-intelligence-2026-07-27.md",
+          title: "Daily Stock Intelligence",
+        },
+        "ai-p0": {
+          file: "./ai-p0-predictive-research-2026-07-27.md",
+          title: "AI-P0 Predictive Research",
+        },
+      };
+
+      const escapeHtml = (value) =>
+        value
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+
+      function inlineMarkdown(value) {
+        let output = "";
+        let cursor = 0;
+        const token = /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*)/g;
+        let match;
+        while ((match = token.exec(value)) !== null) {
+          output += escapeHtml(value.slice(cursor, match.index));
+          if (match[2] && match[3]) {
+            const href = /^(\.\/|\/|https:\/\/)/.test(match[3]) ? match[3] : "#";
+            output += `<a href="${escapeHtml(href)}">${escapeHtml(match[2])}</a>`;
+          } else {
+            output += `<strong>${escapeHtml(match[4])}</strong>`;
+          }
+          cursor = token.lastIndex;
+        }
+        return output + escapeHtml(value.slice(cursor));
+      }
+
+      function tableCells(line) {
+        return line
+          .trim()
+          .replace(/^\||\|$/g, "")
+          .split("|")
+          .map((cell) => cell.trim());
+      }
+
+      function renderMarkdown(markdown) {
+        const lines = markdown.replaceAll("\r\n", "\n").split("\n");
+        const html = [];
+        let paragraph = [];
+        let listType = null;
+
+        const flushParagraph = () => {
+          if (!paragraph.length) return;
+          html.push(`<p>${inlineMarkdown(paragraph.join(" "))}</p>`);
+          paragraph = [];
+        };
+
+        const closeList = () => {
+          if (!listType) return;
+          html.push(`</${listType}>`);
+          listType = null;
+        };
+
+        for (let index = 0; index < lines.length; index += 1) {
+          const line = lines[index];
+          const trimmed = line.trim();
+
+          if (!trimmed) {
+            flushParagraph();
+            closeList();
+            continue;
+          }
+
+          const heading = /^(#{1,3})\s+(.+)$/.exec(trimmed);
+          if (heading) {
+            flushParagraph();
+            closeList();
+            const level = heading[1].length;
+            html.push(`<h${level}>${inlineMarkdown(heading[2])}</h${level}>`);
+            continue;
+          }
+
+          if (
+            trimmed.startsWith("|") &&
+            lines[index + 1] &&
+            /^\s*\|?[\s:|-]+\|[\s:|-|]*\s*$/.test(lines[index + 1])
+          ) {
+            flushParagraph();
+            closeList();
+            const headers = tableCells(trimmed);
+            index += 2;
+            const rows = [];
+            while (index < lines.length && lines[index].trim().startsWith("|")) {
+              rows.push(tableCells(lines[index]));
+              index += 1;
+            }
+            index -= 1;
+            html.push(
+              '<div class="table-wrap"><table><thead><tr>' +
+                headers.map((cell) => `<th>${inlineMarkdown(cell)}</th>`).join("") +
+                "</tr></thead><tbody>" +
+                rows
+                  .map(
+                    (row) =>
+                      "<tr>" +
+                      row.map((cell) => `<td>${inlineMarkdown(cell)}</td>`).join("") +
+                      "</tr>",
+                  )
+                  .join("") +
+                "</tbody></table></div>",
+            );
+            continue;
+          }
+
+          const unordered = /^-\s+(.+)$/.exec(trimmed);
+          const ordered = /^\d+\.\s+(.+)$/.exec(trimmed);
+          if (unordered || ordered) {
+            flushParagraph();
+            const nextList = unordered ? "ul" : "ol";
+            if (listType !== nextList) {
+              closeList();
+              listType = nextList;
+              html.push(`<${listType}>`);
+            }
+            html.push(`<li>${inlineMarkdown((unordered || ordered)[1])}</li>`);
+            continue;
+          }
+
+          closeList();
+          paragraph.push(trimmed.replace(/\s{2}$/, ""));
+        }
+
+        flushParagraph();
+        closeList();
+        return html.join("");
+      }
+
+      async function start() {
+        const key = new URLSearchParams(window.location.search).get("doc") || "macro";
+        const documentConfig = DOCUMENTS[key];
+        const content = document.getElementById("content");
+        if (!documentConfig) {
+          content.innerHTML = '<p class="error">The requested public document was not found.</p>';
+          return;
+        }
+
+        document.title = `${documentConfig.title} | Public Research`;
+        const sourceLink = document.getElementById("source-link");
+        sourceLink.href = documentConfig.file;
+
+        try {
+          const response = await fetch(documentConfig.file);
+          if (!response.ok) throw new Error(`Document request failed: ${response.status}`);
+          content.innerHTML = renderMarkdown(await response.text());
+        } catch (error) {
+          content.innerHTML =
+            '<p class="error">The public research summary could not be loaded.</p>';
+          console.error(error);
+        }
+      }
+
+      start();
+    </script>
+  </body>
+</html>

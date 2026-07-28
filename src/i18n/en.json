@@ -18,7 +18,7 @@
     "phone": "647-860-1462",
     "location": "London, ON / Toronto, ON",
     "summary": "Specializing in Database Architecture, Disaggregated Database, Data Management，Machine Learning. Passionate about bridging theoretical concepts with high-performance computing to solve complex data challenges.",
-    "viewWork": "View My Work",
+    "viewWork": "Recent Individual Work",
     "resume": "Download Resume",
     "contactMe": "Contact Me"
   },
@@ -26,6 +26,12 @@
     "title": "Recent Updates",
     "subtitle": "A timeline of my academic and professional journey",
     "items": [
+      {
+        "date": "Jul 2026",
+        "text": "Published the latest public result from my AI-era, regime-aware quantitative research. The brief reports evidence and validation status without exposing implementation logic.",
+        "link": "research/ai-era-quant-report-2026-07-27.html",
+        "linkLabel": "Read today’s report"
+      },
       { "date": "Jan 2026", "text": "Started new research on Differential Privacy under the guidance of Professor Mostafa Milani at Western University's DB Lab." },
       { "date": "Sept 2025", "text": "Began Master of Science in Computer Science at Western University." },
       { "date": "June 2025", "text": "Graduated from University of Toronto in Electrical and Computer Engineering." },
@@ -64,6 +70,20 @@
     "subtitle": "Professional and academic contributions",
     "items": [
       {
+        "org": "Independent Quantitative Research",
+        "role": "Quantitative Researcher & Engineer",
+        "period": "Mar 2026 – Jul 2026",
+        "desc": "Designed and evaluated a regime-aware research system for U.S. equities, emphasizing causal timing, walk-forward validation, drawdown-aware allocation and explicit separation between numerical results and deployable evidence.",
+        "bullets": [],
+        "timeline": [
+          { "date": "Mar 2026", "text": "Defined the research contract, point-in-time data checks and next-session execution convention." },
+          { "date": "Apr 2026", "text": "Built persistent market-regime and sentiment diagnostics with filtered, out-of-sample evaluation." },
+          { "date": "May 2026", "text": "Expanded the strategy evidence board across market states, including defensive and two-sided research sleeves." },
+          { "date": "Jun 2026", "text": "Tested stock-selection, transition and leverage layers under purge, embargo and drawdown constraints." },
+          { "date": "Jul 2026", "text": "Completed the AI-era evidence audit, retired below-benchmark integrators and published a public-safe result brief." }
+        ]
+      },
+      {
         "org": "Western University DB Lab",
         "role": "Research Assistant",
         "period": "Jan 2026 – Sept 2026",
@@ -95,6 +115,14 @@
     "title": "Projects",
     "subtitle": "Selected technical projects and research work",
     "items": [
+      {
+        "name": "AI-Era Regime-Aware Quantitative Research",
+        "tag": "Quant Research",
+        "tech": "Time Series, Walk-Forward Validation, Risk Allocation",
+        "desc": "An evidence-first study of market regimes, strategy selection and drawdown-aware exposure. The public report presents current results, benchmark comparisons and validation limits while keeping the implementation private.",
+        "link": "research/ai-era-quant-report-2026-07-27.html",
+        "linkLabel": "View latest public report"
+      },
       {
         "name": "Research Assistent",
         "tag": "Differential Privacy",

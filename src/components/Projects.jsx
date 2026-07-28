@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Code2 } from 'lucide-react';
+import { ArrowUpRight, Code2 } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 
 export default function Projects() {
   const { t } = useTranslation();
   const items = t('projects.items', { returnObjects: true });
+  const base = import.meta.env.BASE_URL;
 
   return (
     <SectionWrapper id="projects" title={t('projects.title')} subtitle={t('projects.subtitle')}>
@@ -41,6 +42,15 @@ export default function Projects() {
                 </div>
               )}
               <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+              {item.link && (
+                <a
+                  href={`${base}${item.link}`}
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent-400 hover:text-white transition-colors"
+                >
+                  {item.linkLabel}
+                  <ArrowUpRight size={15} />
+                </a>
+              )}
             </div>
           </motion.div>
         ))}
