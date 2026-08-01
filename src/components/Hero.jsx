@@ -17,11 +17,9 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl animate-glow-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/8 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
+      <div className="hidden lg:flex absolute bottom-7 right-8 items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-amber-100/35 select-none" aria-hidden="true">
+        <span className="w-7 h-px bg-amber-200/30" />
+        Move to bend the accretion light
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
