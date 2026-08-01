@@ -1,4 +1,5 @@
 import './i18n';
+import BlackHoleBackground from './components/BlackHoleBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import News from './components/News';
@@ -15,20 +16,27 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-dark-950 text-slate-200">
-      <Navbar />
-      <Hero />
-      <News />
-      <Education />
-      <Experience />
-      <Projects />
-      <Activity />
-      <Publications />
-      <Skills />
-      <Personal />
-      <Reading />
-      <Contact />
-      <Footer />
+    <div className="relative isolate min-h-screen bg-dark-950 text-slate-200">
+      <BlackHoleBackground />
+      <div
+        className="fixed inset-0 z-[1] pointer-events-none bg-[radial-gradient(circle_at_83%_47%,transparent_0%,rgba(3,3,3,0.035)_34%,rgba(3,3,3,0.26)_100%)]"
+        aria-hidden="true"
+      />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <News />
+        <Education />
+        <Experience />
+        <Projects />
+        <Activity />
+        <Publications />
+        <Skills />
+        <Personal />
+        <Reading />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 }
