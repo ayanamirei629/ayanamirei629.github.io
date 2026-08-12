@@ -13,7 +13,7 @@ const socials = [
 export default function Hero() {
   const { t } = useTranslation();
   const base = import.meta.env.BASE_URL;
-  const latestReport = `${base}research/ai-era-quant-report-2026-07-27.html`;
+  const latestReport = `${base}research/quant-report-portal-2026-08-11.html`;
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

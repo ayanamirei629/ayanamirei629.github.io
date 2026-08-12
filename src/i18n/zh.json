@@ -29,7 +29,7 @@
       {
         "date": "2026年7月",
         "text": "发布AI时代市场状态自适应量化研究的最新公开结果。报告只展示证据与验证状态，不公开内部实现逻辑。",
-        "link": "research/ai-era-quant-report-2026-07-27.html",
+        "link": "research/quant-report-portal-2026-08-11.html",
         "linkLabel": "查看今日报告"
       },
       { "date": "2026年1月", "text": "在韦仕敦大学 (Western University) 数据库实验室 Mostafa Milani 教授的指导下，开展关于差分隐私的新研究。" },
@@ -127,7 +127,7 @@
         "tag": "量化研究",
         "tech": "时间序列, 滚动样本外验证, 风险配置",
         "desc": "围绕市场状态、策略选择与回撤约束敞口进行证据优先研究。公开报告展示最新结果、基准比较与验证边界，同时保留内部实现。",
-        "link": "research/ai-era-quant-report-2026-07-27.html",
+        "link": "research/quant-report-portal-2026-08-11.html",
         "linkLabel": "查看最新公开报告"
       },
       {

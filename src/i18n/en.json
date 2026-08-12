@@ -29,7 +29,7 @@
       {
         "date": "Jul 2026",
         "text": "Published the latest public result from my AI-era, regime-aware quantitative research. The brief reports evidence and validation status without exposing implementation logic.",
-        "link": "research/ai-era-quant-report-2026-07-27.html",
+        "link": "research/quant-report-portal-2026-08-11.html",
         "linkLabel": "Read today’s report"
       },
       { "date": "Jan 2026", "text": "Started new research on Differential Privacy under the guidance of Professor Mostafa Milani at Western University's DB Lab." },
@@ -120,7 +120,7 @@
         "tag": "Quant Research",
         "tech": "Time Series, Walk-Forward Validation, Risk Allocation",
         "desc": "An evidence-first study of market regimes, strategy selection and drawdown-aware exposure. The public report presents current results, benchmark comparisons and validation limits while keeping the implementation private.",
-        "link": "research/ai-era-quant-report-2026-07-27.html",
+        "link": "research/quant-report-portal-2026-08-11.html",
         "linkLabel": "View latest public report"
       },
       {
