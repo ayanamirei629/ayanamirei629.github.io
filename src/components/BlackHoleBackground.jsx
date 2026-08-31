@@ -45,6 +45,32 @@ function makeStreams(count, horizonRadius, random) {
   });
 }
 
+function makeConstellation(random) {
+  const layout = [
+    [0.06, 0.2],
+    [0.15, 0.14],
+    [0.24, 0.25],
+    [0.34, 0.18],
+    [0.44, 0.31],
+    [0.57, 0.22],
+    [0.12, 0.52],
+    [0.25, 0.61],
+    [0.38, 0.52],
+    [0.52, 0.64],
+    [0.65, 0.53],
+    [0.18, 0.82],
+    [0.35, 0.76],
+    [0.56, 0.84],
+  ];
+
+  return layout.map(([x, y]) => ({
+    x,
+    y,
+    phase: random() * TAU,
+    depth: 0.45 + random() * 0.55,
+  }));
+}
+
 export default function BlackHoleBackground() {
   const canvasRef = useRef(null);
 
@@ -74,9 +100,15 @@ export default function BlackHoleBackground() {
     let reducedMotion = reducedMotionQuery.matches;
     let coarsePointer = coarsePointerQuery.matches;
     let mobileScene = false;
+    let scrollProgress = 0;
+    const sceneScale = 1;
+    const sceneOffsetX = 0;
+    const sceneOffsetY = 0;
     let stars = [];
     let streams = [];
+    let constellation = [];
     let backgroundLayer = null;
+    let diskLayer = null;
     let coreLayer = null;
     let foregroundLayer = null;
     let veilLayer = null;
@@ -118,9 +150,11 @@ export default function BlackHoleBackground() {
       const lightweight = mobileScene || coarsePointer;
       stars = makeStars(lightweight ? 54 : 105, random);
       streams = makeStreams(lightweight ? 115 : 300, horizonRadius, random);
+      constellation = lightweight ? [] : makeConstellation(random);
 
       pointer.x = pointer.targetX || centerX;
       pointer.y = pointer.targetY || centerY;
+      updateScrollProgress();
       buildStaticLayers();
     }
 
@@ -139,9 +173,19 @@ export default function BlackHoleBackground() {
       return layer;
     }
 
+    function withSceneTransform(draw) {
+      context.save();
+      context.translate(centerX + sceneOffsetX, centerY + sceneOffsetY);
+      context.scale(sceneScale, sceneScale);
+      context.translate(-centerX, -centerY);
+      draw();
+      context.restore();
+    }
+
     function buildStaticLayers() {
-      backgroundLayer = renderLayer(() => {
-        drawBackdrop(0);
+      backgroundLayer = renderLayer(drawBackdrop);
+      diskLayer = renderLayer(() => {
+        drawWarmField();
         drawAmbientBloom(0);
         drawLensingCrown(0);
         drawDiskBase(0);
@@ -151,14 +195,16 @@ export default function BlackHoleBackground() {
       veilLayer = renderLayer(drawReadableVeil);
     }
 
-    function drawBackdrop(time) {
+    function drawBackdrop() {
       const background = context.createLinearGradient(0, 0, width, height);
       background.addColorStop(0, '#050505');
       background.addColorStop(0.48, '#090704');
       background.addColorStop(1, '#030303');
       context.fillStyle = background;
       context.fillRect(0, 0, width, height);
+    }
 
+    function drawWarmField() {
       const warmField = context.createRadialGradient(
         centerX - horizonRadius * 0.35,
         centerY,
@@ -173,17 +219,109 @@ export default function BlackHoleBackground() {
       warmField.addColorStop(1, 'rgba(0, 0, 0, 0)');
       context.fillStyle = warmField;
       context.fillRect(0, 0, width, height);
+    }
 
+    function drawStars(time) {
+      const parallax = scrollProgress * height * 0.085;
       context.save();
       context.globalCompositeOperation = 'screen';
       stars.forEach((star) => {
         const flicker = 0.74 + Math.sin(time * 0.00045 + star.phase) * 0.26;
+        const starY = ((star.y * height - parallax * (0.45 + star.radius * 0.2)) % height + height) % height;
         context.globalAlpha = star.alpha * flicker;
         context.fillStyle = star.warm ? '#ffd9a0' : '#bbc1c7';
         context.beginPath();
-        context.arc(star.x * width, star.y * height, star.radius, 0, TAU);
+        context.arc(star.x * width, starY, star.radius, 0, TAU);
         context.fill();
       });
+      context.restore();
+    }
+
+    function drawDataConstellation(time) {
+      if (!constellation.length) return;
+
+      const middleReveal = Math.sin(scrollProgress * Math.PI);
+      const baseAlpha = 0.025 + middleReveal * 0.085;
+      const points = constellation.map((node) => ({
+        x: node.x * width + Math.sin(time * 0.00016 + node.phase) * 5 * node.depth,
+        y:
+          node.y * height
+          - scrollProgress * height * 0.065 * node.depth
+          + Math.cos(time * 0.00013 + node.phase) * 4 * node.depth,
+        phase: node.phase,
+      }));
+      const links = [
+        [0, 1], [1, 2], [2, 3], [3, 4], [4, 5],
+        [1, 6], [2, 8], [6, 7], [7, 8], [8, 9], [9, 10],
+        [6, 11], [7, 12], [11, 12], [12, 13], [9, 13],
+      ];
+
+      context.save();
+      context.globalCompositeOperation = 'screen';
+      context.lineWidth = 0.7;
+      links.forEach(([from, to]) => {
+        const start = points[from];
+        const end = points[to];
+        const distanceToPointer = Math.min(
+          Math.hypot(start.x - pointer.x, start.y - pointer.y),
+          Math.hypot(end.x - pointer.x, end.y - pointer.y),
+        );
+        const pointerReveal = clamp(1 - distanceToPointer / 210, 0, 1) * pointer.strength;
+        context.strokeStyle = `rgba(96, 165, 250, ${baseAlpha + pointerReveal * 0.1})`;
+        context.beginPath();
+        context.moveTo(start.x, start.y);
+        context.lineTo(end.x, end.y);
+        context.stroke();
+      });
+
+      points.forEach((point, index) => {
+        const pulse = 0.7 + Math.sin(time * 0.001 + point.phase) * 0.3;
+        const distanceToPointer = Math.hypot(point.x - pointer.x, point.y - pointer.y);
+        const pointerReveal = clamp(1 - distanceToPointer / 180, 0, 1) * pointer.strength;
+        context.fillStyle = `rgba(151, 202, 255, ${(baseAlpha * 2.2 + pointerReveal * 0.3) * pulse})`;
+        context.beginPath();
+        context.arc(point.x, point.y, 1 + (index % 3) * 0.35 + pointerReveal * 0.8, 0, TAU);
+        context.fill();
+      });
+      context.restore();
+    }
+
+    function drawDynamicPhotonLight(time) {
+      const pulse = 0.5 + Math.sin(time * 0.0011) * 0.5;
+      const breathingGlow = context.createRadialGradient(
+        centerX,
+        centerY,
+        horizonRadius * 0.72,
+        centerX,
+        centerY,
+        horizonRadius * 1.5,
+      );
+      breathingGlow.addColorStop(0, 'rgba(0, 0, 0, 0)');
+      breathingGlow.addColorStop(0.62, `rgba(255, 191, 103, ${0.018 + pulse * 0.02})`);
+      breathingGlow.addColorStop(0.72, `rgba(139, 195, 255, ${0.012 + (1 - pulse) * 0.018})`);
+      breathingGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+      context.save();
+      context.globalCompositeOperation = 'screen';
+      context.fillStyle = breathingGlow;
+      context.fillRect(
+        centerX - horizonRadius * 1.55,
+        centerY - horizonRadius * 1.55,
+        horizonRadius * 3.1,
+        horizonRadius * 3.1,
+      );
+
+      context.lineCap = 'round';
+      context.lineWidth = Math.max(0.8, horizonRadius * 0.0045);
+      context.strokeStyle = `rgba(137, 195, 255, ${0.045 + (1 - pulse) * 0.055})`;
+      context.beginPath();
+      context.arc(centerX, centerY, photonRadius * 1.006, -0.42, 0.47);
+      context.stroke();
+
+      context.strokeStyle = `rgba(255, 210, 137, ${0.04 + pulse * 0.05})`;
+      context.beginPath();
+      context.arc(centerX, centerY, photonRadius * 1.012, Math.PI * 0.72, Math.PI * 1.28);
+      context.stroke();
       context.restore();
     }
 
@@ -341,33 +479,37 @@ export default function BlackHoleBackground() {
       context.restore();
     }
 
-    function bendByPointer(x, y, time) {
+    function bendByPointer(x, y) {
       if (pointer.strength < 0.01 || coarsePointer || reducedMotion) return { x, y, influence: 0 };
 
-      const dx = x - pointer.x;
-      const dy = y - pointer.y;
+      const pointerSceneX = centerX + (pointer.x - centerX - sceneOffsetX) / sceneScale;
+      const pointerSceneY = centerY + (pointer.y - centerY - sceneOffsetY) / sceneScale;
+      const dx = x - pointerSceneX;
+      const dy = y - pointerSceneY;
       const distance = Math.hypot(dx, dy);
-      const range = clamp(horizonRadius * 0.92, 170, 330);
-      const influence = clamp(1 - distance / range, 0, 1) * pointer.strength;
+      const range = clamp(horizonRadius * 0.82, 160, 285);
+      const falloff = clamp(1 - distance / range, 0, 1);
+      const influence = falloff * falloff * pointer.strength;
       if (influence <= 0) return { x, y, influence: 0 };
 
-      const angle = Math.atan2(dy, dx) + influence * 1.55 + time * 0.00022 * influence;
-      const compressed = Math.max(15, distance * (1 - influence * 0.34));
+      const speedBoost = clamp(pointer.velocity / 38, 0, 1);
+      const angle = Math.atan2(dy, dx) + influence * speedBoost * 0.075;
+      const deflectedDistance = Math.max(12, distance + range * 0.1 * influence);
       return {
-        x: pointer.x + Math.cos(angle) * compressed,
-        y: pointer.y + Math.sin(angle) * compressed,
+        x: pointerSceneX + Math.cos(angle) * deflectedDistance,
+        y: pointerSceneY + Math.sin(angle) * deflectedDistance,
         influence,
       };
     }
 
-    function streamPoint(stream, angle, time) {
+    function streamPoint(stream, angle) {
       const localX = Math.cos(angle) * stream.orbit;
       const localY = Math.sin(angle) * stream.orbit * stream.eccentricity;
       const cosine = Math.cos(diskTilt);
       const sine = Math.sin(diskTilt);
       const rawX = centerX + localX * cosine - localY * sine;
       const rawY = centerY + localX * sine + localY * cosine;
-      return bendByPointer(rawX, rawY, time);
+      return bendByPointer(rawX, rawY);
     }
 
     function streamColor(stream, alpha) {
@@ -389,20 +531,34 @@ export default function BlackHoleBackground() {
 
         const orbitFade = clamp(1.18 - stream.orbit / (horizonRadius * 4.2), 0.24, 1);
         const flicker = 0.78 + Math.sin(time * 0.00048 + stream.phase) * 0.22;
-        const samples = 5;
+        const samples = 9;
         let peakInfluence = 0;
+        const points = [];
 
-        context.beginPath();
         for (let point = 0; point < samples; point += 1) {
           const progress = point / (samples - 1);
           const sampleAngle = angle - stream.trail * stream.direction * (1 - progress);
-          const position = streamPoint(stream, sampleAngle, time);
+          const position = streamPoint(stream, sampleAngle);
           peakInfluence = Math.max(peakInfluence, position.influence);
-          if (point === 0) context.moveTo(position.x, position.y);
-          else context.lineTo(position.x, position.y);
+          points.push(position);
         }
 
-        const alpha = stream.alpha * orbitFade * flicker * (foreground ? 1.08 : 0.76) * (1 + peakInfluence * 0.5);
+        context.beginPath();
+        context.moveTo(points[0].x, points[0].y);
+        for (let point = 1; point < points.length - 1; point += 1) {
+          const current = points[point];
+          const next = points[point + 1];
+          context.quadraticCurveTo(
+            current.x,
+            current.y,
+            (current.x + next.x) * 0.5,
+            (current.y + next.y) * 0.5,
+          );
+        }
+        const last = points[points.length - 1];
+        context.lineTo(last.x, last.y);
+
+        const alpha = stream.alpha * orbitFade * flicker * (foreground ? 1.08 : 0.76) * (1 + peakInfluence * 0.12);
         context.strokeStyle = streamColor(stream, alpha);
         context.lineWidth = stream.width * (foreground ? 1.08 : 0.88);
         const brightInnerStream = stream.warmth > 0.76 && stream.orbit < horizonRadius * 1.85;
@@ -496,18 +652,22 @@ export default function BlackHoleBackground() {
       context.restore();
     }
 
-    function drawPointerVortex(time) {
+    function drawPointerLens(time) {
       if (pointer.strength < 0.015 || coarsePointer || reducedMotion) return;
 
-      const distanceToMain = Math.hypot(pointer.x - centerX, pointer.y - centerY);
+      const mainCenterX = centerX + sceneOffsetX;
+      const mainCenterY = centerY + sceneOffsetY;
+      const mainPhotonRadius = photonRadius * sceneScale;
+      const distanceToMain = Math.hypot(pointer.x - mainCenterX, pointer.y - mainCenterY);
       const proximity = clamp(
-        1 - Math.abs(distanceToMain - photonRadius) / (photonRadius * 0.75),
+        1 - Math.abs(distanceToMain - mainPhotonRadius) / (mainPhotonRadius * 0.75),
         0,
         1,
       );
-      const speedBoost = clamp(pointer.velocity / 34, 0, 1);
-      const localCore = 7 + proximity * 8 + speedBoost * 2;
-      const boundary = localCore * (2.15 + proximity * 0.82);
+      const speedBoost = clamp(pointer.velocity / 38, 0, 1);
+      const localCore = 6.5 + proximity * 4 + speedBoost * 1.2;
+      const boundary = 22 + proximity * 9 + speedBoost * 2.5;
+      const pulse = 0.72 + Math.sin(time * 0.0024) * 0.28;
 
       const localGlow = context.createRadialGradient(
         pointer.x,
@@ -515,34 +675,50 @@ export default function BlackHoleBackground() {
         0,
         pointer.x,
         pointer.y,
-        boundary * 3.4,
+        boundary * 2.55,
       );
-      localGlow.addColorStop(0, `rgba(0, 0, 0, ${0.94 * pointer.strength})`);
-      localGlow.addColorStop(0.24, `rgba(18, 8, 2, ${0.6 * pointer.strength})`);
-      localGlow.addColorStop(0.56, `rgba(255, 143, 38, ${0.12 * pointer.strength})`);
+      localGlow.addColorStop(0, `rgba(0, 0, 0, ${0.88 * pointer.strength})`);
+      localGlow.addColorStop(0.2, `rgba(8, 4, 2, ${0.52 * pointer.strength})`);
+      localGlow.addColorStop(0.5, `rgba(255, 154, 54, ${0.07 * pointer.strength})`);
+      localGlow.addColorStop(0.68, `rgba(112, 177, 255, ${0.035 * pointer.strength})`);
       localGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
       context.fillStyle = localGlow;
       context.beginPath();
-      context.arc(pointer.x, pointer.y, boundary * 3.4, 0, TAU);
+      context.arc(pointer.x, pointer.y, boundary * 2.55, 0, TAU);
       context.fill();
 
       context.save();
       context.translate(pointer.x, pointer.y);
-      context.rotate(time * 0.00034);
-      context.scale(1, 0.62 + proximity * 0.1);
+      context.scale(1, 0.78 + proximity * 0.06);
       context.globalCompositeOperation = 'screen';
-      context.shadowColor = 'rgba(255, 211, 139, 0.82)';
-      context.shadowBlur = 14 + proximity * 12;
+      context.shadowColor = 'rgba(255, 216, 157, 0.58)';
+      context.shadowBlur = 7 + proximity * 5;
 
-      for (let ring = 0; ring < 4; ring += 1) {
-        context.strokeStyle = ring % 2
-          ? `rgba(255, 126, 32, ${(0.3 - ring * 0.045) * pointer.strength})`
-          : `rgba(255, 242, 205, ${(0.7 - ring * 0.11) * pointer.strength})`;
-        context.lineWidth = Math.max(0.7, 1.6 - ring * 0.22);
+      for (let ring = 0; ring < 2; ring += 1) {
+        const radius = boundary + ring * 5.5;
+        const arcWidth = 0.72 - ring * 0.09;
+        context.strokeStyle = ring
+          ? `rgba(112, 183, 255, ${0.34 * pointer.strength * pulse})`
+          : `rgba(255, 239, 204, ${0.92 * pointer.strength * pulse})`;
+        context.lineWidth = ring ? 0.75 : 1.25;
         context.beginPath();
-        context.arc(0, 0, boundary + ring * 7, ring * 0.58, Math.PI * (1.18 + ring * 0.18));
+        context.arc(0, 0, radius, -arcWidth, arcWidth);
+        context.arc(0, 0, radius, Math.PI - arcWidth, Math.PI + arcWidth);
         context.stroke();
       }
+
+      const photonAngle = (time * 0.00115) % TAU;
+      context.shadowBlur = 5;
+      context.fillStyle = `rgba(255, 247, 220, ${0.72 * pointer.strength})`;
+      context.beginPath();
+      context.arc(
+        Math.cos(photonAngle) * boundary,
+        Math.sin(photonAngle) * boundary,
+        1.15 + speedBoost * 0.45,
+        0,
+        TAU,
+      );
+      context.fill();
       context.restore();
 
       context.fillStyle = `rgba(0, 0, 0, ${0.97 * pointer.strength})`;
@@ -551,19 +727,15 @@ export default function BlackHoleBackground() {
       context.fill();
 
       if (proximity > 0.14) {
-        const angle = Math.atan2(pointer.y - centerY, pointer.x - centerX);
-        const impactX = centerX + Math.cos(angle) * photonRadius;
-        const impactY = centerY + Math.sin(angle) * photonRadius;
+        const angle = Math.atan2(pointer.y - mainCenterY, pointer.x - mainCenterX);
 
         context.save();
         context.globalCompositeOperation = 'screen';
-        for (let ripple = 0; ripple < 3; ripple += 1) {
-          context.strokeStyle = `rgba(255, 230, 185, ${(0.34 - ripple * 0.08) * proximity * pointer.strength})`;
-          context.lineWidth = 0.9;
-          context.beginPath();
-          context.arc(impactX, impactY, 15 + ripple * 11 + Math.sin(time * 0.0018 + ripple) * 2, 0, TAU);
-          context.stroke();
-        }
+        context.strokeStyle = `rgba(255, 230, 185, ${0.24 * proximity * pointer.strength * pulse})`;
+        context.lineWidth = 1;
+        context.beginPath();
+        context.arc(mainCenterX, mainCenterY, mainPhotonRadius * 1.018, angle - 0.13, angle + 0.13);
+        context.stroke();
         context.restore();
       }
     }
@@ -603,7 +775,7 @@ export default function BlackHoleBackground() {
     }
 
     function drawFrame(time, staticFrame = false) {
-      const frameInterval = mobileScene || coarsePointer ? 1000 / 20 : 1000 / 30;
+      const frameInterval = mobileScene || coarsePointer ? 1000 / 24 : 1000 / 60;
       if (!staticFrame && time - lastRender < frameInterval) {
         frameId = window.requestAnimationFrame(drawFrame);
         return;
@@ -611,25 +783,30 @@ export default function BlackHoleBackground() {
       lastRender = time;
 
       if (!coarsePointer && !reducedMotion) {
-        if (pointer.active && pointer.lastMove && time - pointer.lastMove > 1400) {
+        if (pointer.active && pointer.lastMove && time - pointer.lastMove > 520) {
           pointer.active = false;
         }
-        pointer.x = lerp(pointer.x, pointer.targetX, 0.11);
-        pointer.y = lerp(pointer.y, pointer.targetY, 0.11);
-        pointer.strength = lerp(pointer.strength, pointer.active ? 1 : 0, pointer.active ? 0.07 : 0.032);
-        pointer.velocity = lerp(pointer.velocity, 0, 0.08);
+        const speedBoost = clamp(pointer.velocity / 38, 0, 1);
+        const targetStrength = pointer.active ? 0.44 + speedBoost * 0.24 : 0;
+        pointer.strength = lerp(pointer.strength, targetStrength, pointer.active ? 0.42 : 0.18);
+        pointer.velocity = lerp(pointer.velocity, 0, 0.16);
       }
-
       context = mainContext;
       context.globalCompositeOperation = 'source-over';
       context.globalAlpha = 1;
       context.filter = 'none';
       if (backgroundLayer) context.drawImage(backgroundLayer, 0, 0, width, height);
-      drawStreams(time, false);
-      if (coreLayer) context.drawImage(coreLayer, 0, 0, width, height);
-      if (foregroundLayer) context.drawImage(foregroundLayer, 0, 0, width, height);
-      drawStreams(time, true);
-      drawPointerVortex(time);
+      drawStars(time);
+      drawDataConstellation(time);
+      withSceneTransform(() => {
+        if (diskLayer) context.drawImage(diskLayer, 0, 0, width, height);
+        drawDynamicPhotonLight(time);
+        drawStreams(time, false);
+        if (coreLayer) context.drawImage(coreLayer, 0, 0, width, height);
+        if (foregroundLayer) context.drawImage(foregroundLayer, 0, 0, width, height);
+        drawStreams(time, true);
+      });
+      drawPointerLens(time);
       if (veilLayer) context.drawImage(veilLayer, 0, 0, width, height);
 
       if (!staticFrame && !reducedMotion && documentVisible) {
@@ -655,11 +832,17 @@ export default function BlackHoleBackground() {
       }
 
       const now = performance.now();
-      const moveDistance = Math.hypot(nextX - pointer.lastX, nextY - pointer.lastY);
-      const elapsed = Math.max(8, now - pointer.lastMove);
-      pointer.velocity = clamp((moveDistance / elapsed) * 24, 0, 48);
+      if (pointer.lastMove) {
+        const moveDistance = Math.hypot(nextX - pointer.lastX, nextY - pointer.lastY);
+        const elapsed = Math.max(8, now - pointer.lastMove);
+        pointer.velocity = clamp((moveDistance / elapsed) * 24, 0, 48);
+      } else {
+        pointer.velocity = 0;
+      }
       pointer.targetX = nextX;
       pointer.targetY = nextY;
+      pointer.x = nextX;
+      pointer.y = nextY;
       pointer.lastX = nextX;
       pointer.lastY = nextY;
       pointer.lastMove = now;
@@ -668,6 +851,15 @@ export default function BlackHoleBackground() {
 
     function handlePointerLeave(event) {
       if (!event.relatedTarget) pointer.active = false;
+    }
+
+    function updateScrollProgress() {
+      const scrollRange = Math.max(1, document.documentElement.scrollHeight - height);
+      scrollProgress = clamp(window.scrollY / scrollRange, 0, 1);
+    }
+
+    function handleScroll() {
+      updateScrollProgress();
     }
 
     function handleVisibilityChange() {
@@ -689,6 +881,7 @@ export default function BlackHoleBackground() {
     }
 
     window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
     window.addEventListener('pointerout', handlePointerLeave, { passive: true });
     document.addEventListener('visibilitychange', handleVisibilityChange);
@@ -701,6 +894,7 @@ export default function BlackHoleBackground() {
       window.cancelAnimationFrame(frameId);
       window.cancelAnimationFrame(resizeFrameId);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerout', handlePointerLeave);
       document.removeEventListener('visibilitychange', handleVisibilityChange);

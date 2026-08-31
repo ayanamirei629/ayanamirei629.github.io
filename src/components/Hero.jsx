@@ -13,13 +13,13 @@ const socials = [
 export default function Hero() {
   const { t } = useTranslation();
   const base = import.meta.env.BASE_URL;
-  const latestReport = `${base}research/quant-report-portal-2026-08-11.html`;
+  const latestReport = `${base}research/quant-report-portal.html`;
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="hidden lg:flex absolute bottom-7 right-8 items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-amber-100/35 select-none" aria-hidden="true">
         <span className="w-7 h-px bg-amber-200/30" />
-        Move to bend the accretion light
+        {t('hero.backgroundHint')}
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">

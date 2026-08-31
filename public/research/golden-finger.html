@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Golden Finger × AI-P0 Paper Trading</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#111a2e;--text:#eef3ff;--muted:#9caac5;--border:#2a3856;--accent:#66a3ff}
+@media(prefers-color-scheme:light){:root{color-scheme:light;--bg:#f6f8fc;--panel:#fff;--text:#172033;--muted:#5d6b85;--border:#d7deeb;--accent:#246bd6}}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:15px/1.62 Inter,Segoe UI,Arial,sans-serif}
+main{max-width:1260px;margin:auto;padding:24px} .toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+.toolbar a{color:var(--accent);text-decoration:none} .dashboard-shell,article{background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.dashboard-shell{padding:10px;overflow:hidden} iframe{display:block;width:100%;height:990px;border:0;border-radius:8px;background:var(--bg)}
+article{margin-top:18px;padding:24px} h1,h2,h3{line-height:1.25} h1{font-size:28px} h2{margin-top:34px;border-bottom:1px solid var(--border);padding-bottom:8px}
+a{color:var(--accent)} code{overflow-wrap:anywhere} blockquote{margin-left:0;padding:10px 16px;border-left:4px solid var(--accent);background:color-mix(in srgb,var(--panel) 85%,var(--accent))}
+table{width:100%;border-collapse:collapse;display:block;overflow-x:auto} th,td{border:1px solid var(--border);padding:7px 10px;text-align:left;white-space:nowrap} th{background:color-mix(in srgb,var(--panel) 80%,var(--accent))}
+@media(max-width:720px){main{padding:10px} article{padding:15px} iframe{height:920px}}
+</style></head><body><main>
+<div class="toolbar"><strong>Golden Finger × AI-P0 · Paper Trading</strong><span><a href="quant-report-portal.html">返回量化报告导航</a> · <a href="golden_finger.md">查看Markdown审计文本</a> · <a href="golden_finger_paper_historical_holdings.csv">下载历史每日持仓</a></span></div>
+<section class="dashboard-shell" aria-label="当前最优Paper策略历史每日持仓交互图">
+<iframe src="golden-finger-paper-dashboard.html#historical-holdings" title="当前最优Paper策略历史每日持仓交互图"></iframe>
+</section>
+<article><h1>Golden Finger × AI-P0：Paper Trading执行依据与研究审计</h1>
+<h2>当前Paper Trading执行依据</h2>
+<blockquote>
+<p><strong>周一冻结策略保持 <code>80% AI-P0 V4 + 5% Golden Finger + 15% GLD</code>。</strong> 2026-08-28信号已按append-only规则登记，对应2026-08-31开盘；本轮没有用事后风险实验覆盖首笔信号。</p>
+</blockquote>
+<h3>交互式历史每日持仓</h3>
+<p><strong><a href="golden_finger.html">打开含内嵌交互持仓图的完整报告</a></strong> · <a href="golden-finger-paper-dashboard.html#historical-holdings">仅打开持仓面板</a></p>
+<ul>
+<li>默认视图是近三年严格时序的<strong>历史因果回放</strong>，可切换近3个月、近1年或近3年，并逐日查看AI-P0板块、Golden个股、GLD和现金的准确目标权重。</li>
+<li>“真实Paper Forward”视图只读取append-only账本，显示已登记的信号与下一开盘目标；历史回放不会回填该账本，也不会冒充实际成交。</li>
+<li>Markdown本身不能执行交互式JavaScript，因此可交互的正式浏览入口是同目录 <code>golden_finger.html</code>；每日发布器会同时刷新该HTML、独立持仓面板及可核验的 <code>golden_finger_paper_historical_holdings.csv</code>。</li>
+</ul>
+<h3>今日策略选股与权重</h3>
+<table>
+<thead>
+<tr>
+  <th>标的</th>
+  <th style="text-align:right">目标权重</th>
+  <th>角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>SOXX</td>
+  <td style="text-align:right">80.000%</td>
+  <td>AI-P0 V4核心</td>
+</tr>
+<tr>
+  <td>GLD</td>
+  <td style="text-align:right">15.000%</td>
+  <td>GLD跨资产防御</td>
+</tr>
+<tr>
+  <td>ALAB</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>APLD</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>ASTS</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>BE</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>CGNX</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>CRDO</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>GOOG</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>HUBB</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>INOD</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>INTC</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>LAC</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>LITE</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>MCHP</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>META</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>MSTR</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>MU</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>PENG</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>RKLB</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+<tr>
+  <td>VST</td>
+  <td style="text-align:right">0.263%</td>
+  <td>Golden W袖套</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>AI-P0 V4（80%）</strong>：52周因果轮动在现金抵押路径与板块残差路径之间选择，当前风险状态为 <code>risk_on</code>，核心标的是 SOXX；周频信号在日内保持，不追涨改仓。</li>
+<li><strong>Golden Finger（5%）</strong>：当前 19 只股票等权分配，每只约 0.263%。只使用综合W首次出现、下一开盘成交、3 ATR收盘止损、顶部全卖及SPX低于MA200时袖套减半；催化剂仍为coverage-building，不进入硬门槛。</li>
+<li><strong>GLD（15%）</strong>：提供与高相关Top Six不同的跨资产分散。严格membership mask后，简单80% V4+20% GLD的未见Sharpe 2.342 高于当前80/5/15的 2.315，所以5% Golden只承担前瞻证伪，不被解释为已证明alpha。</li>
+<li><strong>执行约束</strong>：40万美元独立模拟账本、最大1×、long-only、MKT/OPG、2.5%开盘gap现金缓冲；paper=true、live=false。最近一次非传输what-if通过时间 <code>2026-08-31T12:17:01.941490+00:00</code>。</li>
+</ul>
+<h3>模拟盘实际绩效（不是历史回测）</h3>
+<table>
+<thead>
+<tr>
+  <th>实绩指标</th>
+  <th style="text-align:right">当前值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>已标记交易日</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>总收益</td>
+  <td style="text-align:right">—</td>
+</tr>
+<tr>
+  <td>年化收益</td>
+  <td style="text-align:right">—</td>
+</tr>
+<tr>
+  <td>Sharpe</td>
+  <td style="text-align:right">—</td>
+</tr>
+<tr>
+  <td>最大回撤</td>
+  <td style="text-align:right">—</td>
+</tr>
+<tr>
+  <td>已提交 / 已成交订单</td>
+  <td style="text-align:right">21 / 21</td>
+</tr>
+</tbody>
+</table>
+<p>首个执行日之前收益、回撤和Sharpe为空是正确结果；不得用历史回测值填入“实际绩效”。</p>
+<h3>仓位预算优化结论</h3>
+<ul>
+<li>当前Fear &amp; Greed为 54.4/100（neutral），但PIT历史只有 249 日，不能承担三年模型选择。</li>
+<li>动量拥挤哨兵为 58.3%，高于 38.3%，风险flag开启；forecast stress 11.28% 高于 8.00%预算，headroom -3.28%，因此<strong>不允许加杠杆</strong>。</li>
+<li>预先限定的诊断中，风险flag开启时将原组合减半、再配25%等权XLP/XLU/XLV和25%现金的 <code>tail_defensive25_cash25</code> 历史未见Sharpe为 2.571、CAGR 54.43%、回撤 -7.25%；20bp压力Sharpe 2.514。</li>
+<li>但其相对冻结组合的配对bootstrap p=0.161、90%区间跨0，13周折只有 25.0% 为正；哨兵又是post-audit且0/26 forward。WMT/KO/JPM当前真正满足冻结W持仓规则的是 0/3，不能仅因“防御股”标签买入。</li>
+<li>因而本轮最优的工程决策是：<strong>保持周一已登记80/5/15作为干净的paper基线，同时从下一未登记信号起将50%现金/防御方案作为独立shadow challenger积累数据；不回写本周信号。</strong></li>
+</ul>
+<p>完整风险预算实验见 <a href="PAPER_RISK_BUDGET_RESEARCH.md">Paper risk-budget research audit</a>。</p>
+<h3>Forward复核周期</h3>
+<ul>
+<li>仅使用development+validation的96周做4周区块设计模拟；confirmation和真实paper结果均没有用于设阈值。</li>
+<li>5% Golden替代5% GLD在26周模拟中的Sharpe胜率为 <strong>43.6%</strong>，三项（Sharpe、累计收益、回撤）同时胜出的概率为 <strong>20.4%</strong>。因此26周只做fail-closed中期审计，不自动晋级。</li>
+<li>52周前不依据paper结果改W阈值、股票池、止损、权重或退出；首次晋级复核还须至少两个连续26周窗口同向，并共同通过6/12/20bp成本和开盘偏差压力。</li>
+</ul>
+<p>完整设计见 <a href="PAPER_FORWARD_POWER_AUDIT.md">Paper forward检验能力与复核周期</a>。</p>
+<h3>整数股与小袖套实施审计</h3>
+<ul>
+<li>以40万美元paper资金、2.5%开盘gap预留重放时，Golden 5%实际可用于整股定仓的资本为USD 19,500；历史活跃股票日中零股比例为 <strong>0.00%</strong>，最差目标名义忠实度 <strong>97.33%</strong>。</li>
+<li>6bp并计每单最低USD1后，80/5/15整股路径的未见Sharpe为 <strong>2.310</strong>，连续权重为 <strong>2.315</strong>，差 <strong>-0.005</strong>；这说明当前资金规模可实施，但整数舍入不创造Alpha。</li>
+<li>该结果只解决执行可行性，不能放宽52周forward晋级门槛；真实paper仍须逐笔归因计划价、成交价、佣金、slippage与未部署现金。</li>
+</ul>
+<p>完整结果见 <a href="PAPER_INTEGER_IMPLEMENTATION_AUDIT.md">Paper整数股实施与小仓位可交易性审计</a>。</p>
+<h2>历史研究结论</h2>
+<blockquote>
+<p>量化结论：<strong>不能确认该组合实质优于 Top Six。</strong> 正确时序下，预先选择的最终组合为 <strong>92.5% AI-P0 + 7.5% Golden Finger 个股袖套</strong>。未见期 Sharpe 为 <strong>2.238</strong>，仅比 Top Six 最高的 <code>slow52_conditional_gld50_sector100_v3_causal</code> <strong>2.224</strong> 高 <strong>+0.014</strong>；相对同组合基准 AI-P0 V4 只提高 <strong>+0.018</strong>。差异很小、bootstrap 区间跨零，而且 CAGR 更低，因此应视为<strong>近似打平并略微平滑风险</strong>，不应晋升为生产冠军。</p>
+</blockquote>
+<ul>
+<li>个股数据截止：<strong>2026-08-28</strong>；三年日频区间：<strong>2023-08-28–2026-08-28</strong>，754 个市场交易日。</li>
+<li>AI-P0 同口径比较截止：<strong>2026-07-17</strong>；未见期 106 周，确认期 54 周。</li>
+<li>股票池：101 只普通股票，排除 22 只 ETF；6 只历史不足标为 coverage-building。</li>
+<li>共检验 <strong>775</strong> 个组合配置，另有 704 条单股描述性路径；基础成本每边 6 bp、压力成本每边 12 bp。</li>
+<li>所有信号在收盘确认、下一可交易日开盘成交；不做空、不增加杠杆。</li>
+<li>状态：<code>POINT_ESTIMATE_HURDLE_PASS</code>；<strong>仅限研究影子，不授予自动下单或生产权限。</strong></li>
+</ul>
+<h2>最新 historical pseudo-forward 补充验证</h2>
+<p>为了回答“模型生成较晚，能否用历史 forward validation 补齐”，已新增研究隔离的 expanding walk-forward：最少52周训练、13周外层测试、1周 embargo，所有特征只取信号收盘前可获得值，收益从下一开盘开始。真实 paper forward ledger <strong>没有回填</strong>。</p>
+<ul>
+<li>综合 W 可因果回放约三年、150个事件；异常催化剂的 point-in-time archive 只有51个交易日，不能安全倒灌为三年。</li>
+<li>新检验 23 个广度、趋势、相对强弱、风险预算和低换手 gate；静态选择最终退回 <code>control_gld20</code>，即 <strong>80% V4 + 20% GLD</strong>。</li>
+<li>对 10 只有明确监控起始日的新股票执行历史 eligibility mask 后，paper-like 80/5/15 未见期 Sharpe 为 <strong>2.315</strong>；80/15/5现金对照为 <strong>2.322</strong>，80/20 GLD 为 <strong>2.342</strong>。未加 mask 的 Golden 袖套 Sharpe 被高估约 <strong>+0.222</strong>。</li>
+<li>逐一剔除 101 只股票并完整重放后，相对GLD对照的未见期Sharpe差始终为负，范围 <strong>-0.041 至 -0.019</strong>，没有任何单股剔除能翻转排序。该诊断只证明劣势不是某一股票造成，禁止据此挑选历史赢家。</li>
+<li>外层拼接 Sharpe <strong>2.600</strong>，同期 GLD 对照 <strong>2.620</strong>，差 <strong>-0.020</strong>；正 Sharpe 差折占比 <strong>0.00%</strong>。</li>
+<li>24条路径的 CSCV PBO 为 <strong>95.71%</strong>；promotion gate=<code>false</code>。因此没有用轻微点估计提升替换当前冻结执行策略。</li>
+<li>历史交易权重加权绝对开盘 gap 的P95为 <strong>3.74%</strong>；20bp内部成本再叠加50bp Golden换手不利滑点后，paper-like 未见期 Sharpe 为 <strong>2.267</strong>。</li>
+<li>Golden替代GLD在V4最差四分位周的平均边际贡献为 <strong>-6.82 bp/周</strong>，在GLD最强四分位周为 <strong>-15.11 bp/周</strong>；单周剔除后的未见期Sharpe差最高仍只有 <strong>-0.008</strong>。这表明劣势不是单一异常周，而是Golden没有承担GLD在核心下跌期的分散角色。</li>
+<li>80/20 GLD 对照未见期 Sharpe 为 <strong>2.342</strong>；真正独立证据仍只能从 2026-08-31 后的 paper trading 累计。</li>
+</ul>
+<p>完整逐折、成本压力和候选保留表见 <a href="GOLDEN_FINGER_PSEUDO_FORWARD.md">Golden Finger pseudo-forward 报告</a>。</p>
+<h2>历史92.5/7.5增量实验结果（非当前Paper）</h2>
+<table>
+<thead>
+<tr>
+  <th>口径</th>
+  <th style="text-align:right">Sharpe</th>
+  <th style="text-align:right">年化收益</th>
+  <th style="text-align:right">累计收益</th>
+  <th style="text-align:right">最大回撤</th>
+  <th style="text-align:right">周数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>AI-P0 V4 基准 · 未见期</td>
+  <td style="text-align:right">2.219</td>
+  <td style="text-align:right">62.14%</td>
+  <td style="text-align:right">167.81%</td>
+  <td style="text-align:right">-14.95%</td>
+  <td style="text-align:right">106</td>
+</tr>
+<tr>
+  <td>92.5/7.5 Golden Finger · 未见期</td>
+  <td style="text-align:right">2.238</td>
+  <td style="text-align:right">60.21%</td>
+  <td style="text-align:right">161.38%</td>
+  <td style="text-align:right">-14.03%</td>
+  <td style="text-align:right">106</td>
+</tr>
+<tr>
+  <td>92.5/7.5 Golden Finger · 未见期 12bp 压力</td>
+  <td style="text-align:right">2.235</td>
+  <td style="text-align:right">60.12%</td>
+  <td style="text-align:right">161.06%</td>
+  <td style="text-align:right">-14.04%</td>
+  <td style="text-align:right">106</td>
+</tr>
+<tr>
+  <td>AI-P0 V4 基准 · 确认期</td>
+  <td style="text-align:right">2.677</td>
+  <td style="text-align:right">103.65%</td>
+  <td style="text-align:right">109.30%</td>
+  <td style="text-align:right">-14.95%</td>
+  <td style="text-align:right">54</td>
+</tr>
+<tr>
+  <td>92.5/7.5 Golden Finger · 确认期</td>
+  <td style="text-align:right">2.687</td>
+  <td style="text-align:right">96.85%</td>
+  <td style="text-align:right">102.04%</td>
+  <td style="text-align:right">-14.03%</td>
+  <td style="text-align:right">54</td>
+</tr>
+<tr>
+  <td>92.5/7.5 Golden Finger · 共同历史期</td>
+  <td style="text-align:right">2.369</td>
+  <td style="text-align:right">56.07%</td>
+  <td style="text-align:right">264.23%</td>
+  <td style="text-align:right">-14.03%</td>
+  <td style="text-align:right">151</td>
+</tr>
+</tbody>
+</table>
+<p>这个组合改善的是<strong>风险形态而非绝对利润</strong>：未见期累计收益由 167.81% 降至 161.38%，CAGR 由 62.14% 降至 60.21%；同时年化波动由 23.03% 降至 22.23%，最大回撤由 -14.95% 收窄至 -14.03%。个股袖套与 AI-P0 共同历史周收益相关系数为 <strong>0.382</strong>，存在一定分散作用，但远非独立收益源。</p>
+<h2>经济机制与朴素对照</h2>
+<table>
+<thead>
+<tr>
+  <th>同为 7.5% 替代权重 · 未见期</th>
+  <th style="text-align:right">Sharpe</th>
+  <th style="text-align:right">CAGR</th>
+  <th style="text-align:right">累计收益</th>
+  <th style="text-align:right">最大回撤</th>
+  <th style="text-align:right">周数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>保留现金</td>
+  <td style="text-align:right">2.219</td>
+  <td style="text-align:right">56.66%</td>
+  <td style="text-align:right">149.69%</td>
+  <td style="text-align:right">-13.87%</td>
+  <td style="text-align:right">106</td>
+</tr>
+<tr>
+  <td>被动 SPY</td>
+  <td style="text-align:right">2.200</td>
+  <td style="text-align:right">58.36%</td>
+  <td style="text-align:right">155.24%</td>
+  <td style="text-align:right">-13.90%</td>
+  <td style="text-align:right">106</td>
+</tr>
+<tr>
+  <td>被动 GLD</td>
+  <td style="text-align:right">2.273</td>
+  <td style="text-align:right">59.76%</td>
+  <td style="text-align:right">159.89%</td>
+  <td style="text-align:right">-14.07%</td>
+  <td style="text-align:right">106</td>
+</tr>
+<tr>
+  <td>Golden Finger 个股袖套</td>
+  <td style="text-align:right">2.238</td>
+  <td style="text-align:right">60.21%</td>
+  <td style="text-align:right">161.38%</td>
+  <td style="text-align:right">-14.03%</td>
+  <td style="text-align:right">106</td>
+</tr>
+</tbody>
+</table>
+<p>被动 GLD 的同口径未见期 Sharpe 为 <strong>2.273</strong>，高于 Golden Finger 的 <strong>2.238</strong>；Golden Finger 相对 GLD 的 Sharpe 差为 <strong>-0.035</strong>。这不是要事后把 GLD 宣布为新冠军，而是一个必要的经济对照：复杂 W/顶部/ATR 规则没有证明其收益来自独特选股信息，当前效果可被更简单的跨资产分散解释。被动对照尚未加入跨袖套再平衡成本，因此只作诊断，不作生产晋升依据。</p>
+<h2>时序纠错与结论撤回</h2>
+<p>旧版把“本周股票收益”错误地与标在本周信号日、实际代表“下一开盘到再下一开盘”的 AI-P0 收益混合，造成一周错位，并夸大为 70/30、Sharpe 2.574。该结果已经撤回。当前版本把两个袖套都统一为<strong>信号周收盘确认、下一开盘到再下一开盘记账</strong>；纠正后才得到 92.5/7.5、Sharpe 2.238、相关系数 0.382。这项纠错说明，任何只比较最终指标而不审计收益标签和可交易时点的结论都不可信。</p>
+<h2>历史92.5/7.5实验规则（非当前Paper）</h2>
+<ol>
+<li>总资金 <strong>92.5%</strong> 配置当前 <code>slow52_conditional_gld50_sector_q25_diversified_v4_causal</code>；<strong>7.5%</strong> 配置 Golden Finger 个股袖套，二者合计 100%。</li>
+<li>个股仅在“综合 W”首次出现且冻结账本预期优势 ≥ 5 bp/日、20日相对板块收益 ≥ -7% 时入选；信号后下一开盘买入。</li>
+<li>个股袖套内部每只股票上限 <strong>15%</strong>，因此占总组合的单股上限仅为 <strong>1.125%</strong>；未用资金保留现金。</li>
+<li>入场后使用 <strong>3 ATR</strong> 固定止损：收盘跌破后下一开盘卖出；出现普通或极端顶部信号时全仓在下一开盘卖出。日线不能保证跳空成交价等于止损价。</li>
+<li>标普500收盘低于 200 日均线时，从下一开盘起把<strong>个股袖套内部</strong>目标仓位减半；恢复站上均线后再恢复。总组合不加杠杆。</li>
+<li>异常催化剂只保留观察，不参与三年冠军规则。</li>
+</ol>
+<h2>复杂实验循环结果</h2>
+<table>
+<thead>
+<tr>
+  <th>阶段</th>
+  <th>胜出规则</th>
+  <th style="text-align:right">三年 Sharpe</th>
+  <th style="text-align:right">CAGR</th>
+  <th style="text-align:right">累计收益</th>
+  <th style="text-align:right">最大回撤</th>
+  <th style="text-align:right">确认期 Sharpe</th>
+  <th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>原始四类策略</td>
+  <td>W→顶部、10%/股、全卖</td>
+  <td style="text-align:right">1.346</td>
+  <td style="text-align:right">40.31%</td>
+  <td style="text-align:right">175.47%</td>
+  <td style="text-align:right">-25.49%</td>
+  <td style="text-align:right">1.230</td>
+  <td>独立策略未过基准</td>
+</tr>
+<tr>
+  <td>入场/止损/仓位优化</td>
+  <td>W→顶部、3 ATR 止损、15%/股</td>
+  <td style="text-align:right">1.470</td>
+  <td style="text-align:right">48.20%</td>
+  <td style="text-align:right">224.48%</td>
+  <td style="text-align:right">-26.24%</td>
+  <td style="text-align:right">0.977</td>
+  <td>利润最高的独立组合</td>
+</tr>
+<tr>
+  <td>市场风险覆盖</td>
+  <td>上述规则 + MA200 下减半</td>
+  <td style="text-align:right">1.496</td>
+  <td style="text-align:right">43.05%</td>
+  <td style="text-align:right">191.91%</td>
+  <td style="text-align:right">-21.19%</td>
+  <td style="text-align:right">1.007</td>
+  <td>独立 Sharpe 最高</td>
+</tr>
+<tr>
+  <td>已有底部交易策略</td>
+  <td>relative-strength bottom / swing 4×2</td>
+  <td style="text-align:right">1.025</td>
+  <td style="text-align:right">16.66%</td>
+  <td style="text-align:right">58.59%</td>
+  <td style="text-align:right">-16.70%</td>
+  <td style="text-align:right">-1.016</td>
+  <td>确认期失效</td>
+</tr>
+<tr>
+  <td>AI-P0 增量组合</td>
+  <td>92.5% AI-P0 + 7.5% W 袖套</td>
+  <td style="text-align:right">2.369</td>
+  <td style="text-align:right">56.07%</td>
+  <td style="text-align:right">264.23%</td>
+  <td style="text-align:right">-14.03%</td>
+  <td style="text-align:right">2.687</td>
+  <td>点估计略高但无显著优势</td>
+</tr>
+</tbody>
+</table>
+<p>独立策略利润最高的是 15%/股、3 ATR 止损版本：三年累计 224.48%，10 万美元对应净利润约 <strong>$224,482</strong>；但其 Sharpe 只有 1.470，不能替代 AI-P0。严格按开发/验证期选择时，模型只愿意给它 <strong>7.5%</strong> 总组合权重；20%–30% 等更大权重在正确对齐后没有形成稳健优势。</p>
+<h2>哪些指标有用，哪些应忽略</h2>
+<p>96 个入场过滤器的稳健胜出项仍是基础 W 条件。以下附加条件没有稳定提高开发期与验证期的共同表现，应暂时<strong>忽略为入场硬门槛</strong>：</p>
+<ul>
+<li>更高的 W 预期优势门槛（10/15 bp/日）；</li>
+<li>要求个股 20 日相对板块收益为正；</li>
+<li>ATR 百分比上限；</li>
+<li>入场时必须位于市场 MA200 之上；</li>
+<li>MACD 三日转强；</li>
+<li>更高的底部强度分数。</li>
+</ul>
+<p>有实际增益的只有两类风险控制：<strong>3 ATR 收盘确认止损</strong>，以及<strong>市场跌破 MA200 后把个股袖套减半</strong>。这说明现有大量个股指标更适合解释和排序，不应叠加成机械加仓；指标越多并没有自动产生更多有效信息。</p>
+<h2>用户列举的四类策略</h2>
+<table>
+<thead>
+<tr>
+  <th>策略</th>
+  <th>三年资格</th>
+  <th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1. 异常催化剂观察或综合W买入，顶部卖出</td>
+  <td><code>COVERAGE_BUILDING</code></td>
+  <td>催化剂历史不足，只有 W 分支可做完整回放</td>
+</tr>
+<tr>
+  <td>2. 催化剂消失且盈利卖出；W分支顶部卖出</td>
+  <td><code>COVERAGE_BUILDING</code></td>
+  <td>催化剂消失逻辑已按下一开盘执行，但不能外推三年</td>
+</tr>
+<tr>
+  <td>3. 极端底部 + 催化剂买入，催化剂消失卖出</td>
+  <td><code>COVERAGE_BUILDING</code></td>
+  <td>样本不足，不参与冠军选择</td>
+</tr>
+<tr>
+  <td>4. 综合W次日买入，顶部卖出</td>
+  <td><code>FULL_3Y</code></td>
+  <td>是有效独立袖套来源，但单独 Sharpe 不及 AI-P0</td>
+</tr>
+</tbody>
+</table>
+<p>催化剂档案仅覆盖 <strong>2026-06-05–2026-08-28</strong>，51 个交易日、3789 条观察。未知历史没有被当作“无催化剂”，因此 S1–S3 没有用虚构的三年 PASS 伪装成功。单只股票也没有达到预设的 20 次完整入场门槛；TSLA 等排名只能视为描述性结果，不能设为固定个股冠军。更重要的是，原始 W 交易政策的确认期为负且正式实验状态是 <code>GOLDEN_POSITION_DISABLED</code>；本报告只能把 W 视作小规模分散候选，不能把它解释成已经验证的选股 alpha。</p>
+<h2>统计与实施边界</h2>
+<ul>
+<li>确认期 Sharpe 改善为 <strong>+0.010</strong>；4周区块 bootstrap 90% 区间 <strong>[-0.093, 0.100]</strong>，单侧 p=0.454。</li>
+<li>未见期改善 90% 区间 <strong>[-0.094, 0.137]</strong>，单侧 p=0.400。两个区间均跨 0，所以“已超过”只指历史点估计，不代表统计上已经证明优越。</li>
+<li>当前监控池回溯存在幸存者与关注偏差；综合 W 也是历史审计后冻结的定义。</li>
+<li>当前 Top Six 第一名是 <code>slow52_conditional_gld50_sector100_v3_causal</code>，历史未见期 Sharpe 2.224；本组合仅高 +0.014，12 bp 压力下也只高 +0.011，不足以抵消模型选择误差、幸存者偏差和真实滑点不确定性。</li>
+<li>推荐保留现有 Top Six 生产排序，把 92.5/7.5 仅作为影子候选；至少积累 26 个全新周、差异区间转正且 CAGR/回撤权衡仍成立后再决定是否晋升。</li>
+</ul>
+<h2>证据文件</h2>
+<ul>
+<li><a href="GOLDEN_FINGER_8H_CLOSEOUT.md">Golden Finger 8小时限时研究收口审计</a></li>
+<li><a href="golden_finger_incremental_overlay.json">增量组合审计</a></li>
+<li><a href="golden_finger_incremental_overlay_weekly.csv">增量组合周收益</a></li>
+<li><a href="golden_finger_optimization.json">入场、止损与仓位优化</a></li>
+<li><a href="golden_finger_risk_overlay.json">组合风险覆盖</a></li>
+<li><a href="golden_finger.json">原始四类策略回测</a></li>
+<li><a href="golden_finger_trade_policy_portfolio.json">底部交易策略组合审计</a></li>
+<li><a href="GOLDEN_FINGER_PSEUDO_FORWARD.md">历史 pseudo-forward 补充验证</a></li>
+<li><a href="golden_finger_pseudo_forward_latest.json">历史 pseudo-forward 机器结果</a></li>
+<li><a href="PAPER_RISK_BUDGET_RESEARCH.md">仓位预算与防御轮动研究</a></li>
+<li><a href="PAPER_FORWARD_POWER_AUDIT.md">Paper forward检验能力与复核周期</a></li>
+<li><a href="PAPER_INTEGER_IMPLEMENTATION_AUDIT.md">Paper整数股实施与小仓位可交易性审计</a></li>
+<li><a href="golden-finger-paper-dashboard.html#historical-holdings">交互式历史每日持仓与Paper Forward实绩</a></li>
+<li><a href="golden_finger_paper_historical_holdings.csv">历史每日持仓可核验明细</a></li>
+<li><a href="../../ib_paper_trading/outputs/PAPER_TRADING_REPORT.md">IBKR append-only执行记录</a></li>
+</ul>
+<p>生成时间：2026-08-31T15:18:50.296576+00:00。</p>
+</article>
+</main></body></html>

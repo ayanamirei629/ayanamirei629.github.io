@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Current Strategy Results</title><link rel="stylesheet" href="report-source.css?v=20260901"><link rel="stylesheet" href="model-showcase.css?v=20260901"></head>
+<body><main><header class="report-header"><div><h1>Current Strategy Results</h1><p>Published 2026-09-01 · market data through <b>2026-08-28</b></p></div><a href="quant-report-portal.html">Back to report portal</a></header>
+<article class="markdown-body"><h1>Current Strategy Results</h1>
+<p><a href="STRATEGY_MASTER_REPORT_ZH.md">中文</a> · <a href="ai-p0-research-report.html">Development audit</a> · <a href="market-dashboard.html">Interactive dashboard</a></p>
+<ul>
+<li>Market data through <strong>2026-08-28</strong>. Weekly next-open returns use the corrected two-label maturity embargo.</li>
+<li>Current historical economic frontier: <strong><code>slow52_conditional_gld50_sector_q25_diversified_v4_causal</code></strong>. Registered/pending signals: <strong>3/3</strong>; independent append-only maturity: <strong>0/26</strong>; no production override.</li>
+<li>No leveraged candidate is currently valid. The old V5-derived leverage chain was invalidated before its first eligible signal and is excluded from this board.</li>
+</ul>
+<h2>Top six current models by historical-unseen Sharpe</h2>
+<table>
+<thead>
+<tr>
+  <th>Model</th>
+  <th style="text-align:right">Validation CAGR/Sharpe/DD</th>
+  <th style="text-align:right">Confirmation CAGR/Sharpe/DD</th>
+  <th style="text-align:right">Historical unseen CAGR/Sharpe/DD</th>
+  <th>Current decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>slow52_conditional_gld50_sector100_v3_causal</code></td>
+  <td style="text-align:right">28.0% / 1.66 / 8.4%</td>
+  <td style="text-align:right">96.9% / 2.68 / 14.0%</td>
+  <td style="text-align:right">59.4% / 2.22 / 14.0%</td>
+  <td>FROZEN V2 SHADOW; SUPERSEDED FOR NEW RESEARCH</td>
+</tr>
+<tr>
+  <td><code>slow52_conditional_gld50_sector_q25_diversified_v4_causal</code></td>
+  <td style="text-align:right">28.0% / 1.66 / 8.4%</td>
+  <td style="text-align:right">103.7% / 2.68 / 14.9%</td>
+  <td style="text-align:right">62.1% / 2.22 / 14.9%</td>
+  <td>LEADING UNLEVERED POST-AUDIT SHADOW</td>
+</tr>
+<tr>
+  <td><code>state_probability_shrinkage_v4</code></td>
+  <td style="text-align:right">25.4% / 1.30 / 9.9%</td>
+  <td style="text-align:right">94.9% / 2.65 / 14.6%</td>
+  <td style="text-align:right">57.0% / 2.07 / 14.6%</td>
+  <td>LEADING STATE-STABLE UNLEVERED SHADOW</td>
+</tr>
+<tr>
+  <td><code>slow52_wta_gld20_v2_causal</code></td>
+  <td style="text-align:right">15.6% / 0.84 / 12.6%</td>
+  <td style="text-align:right">77.9% / 2.65 / 11.9%</td>
+  <td style="text-align:right">44.0% / 1.82 / 12.6%</td>
+  <td>FROZEN POST-AUDIT SHADOW</td>
+</tr>
+<tr>
+  <td><code>core8_price_margin_buffer_v1</code></td>
+  <td style="text-align:right">17.5% / 0.64 / 19.8%</td>
+  <td style="text-align:right">123.0% / 2.77 / 20.4%</td>
+  <td style="text-align:right">64.7% / 1.69 / 20.4%</td>
+  <td>STANDALONE FROZEN SHADOW</td>
+</tr>
+<tr>
+  <td><code>core8_price_buffered_top1</code></td>
+  <td style="text-align:right">16.1% / 0.60 / 19.8%</td>
+  <td style="text-align:right">126.6% / 2.87 / 20.4%</td>
+  <td style="text-align:right">64.7% / 1.69 / 20.4%</td>
+  <td>FROZEN SHADOW</td>
+</tr>
+<tr>
+  <td>Matched SPY</td>
+  <td style="text-align:right">12.3% / 0.60 / 19.7%</td>
+  <td style="text-align:right">20.0% / 1.80 / 7.1%</td>
+  <td style="text-align:right">16.1% / 0.91 / 19.7%</td>
+  <td>Same-window broad-market reference</td>
+</tr>
+</tbody>
+</table>
+<h2>Next-cycle shadow allocations</h2>
+<table>
+<thead>
+<tr>
+  <th>Model</th>
+  <th>Signal date</th>
+  <th>Predicted allocation</th>
+  <th>Authority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>slow52_conditional_gld50_sector100_v3_causal</code></td>
+  <td>2026-08-28</td>
+  <td>risk_on; hold SOXX 100.0%; gross 1.00x</td>
+  <td>shadow, 1x, no production authority</td>
+</tr>
+<tr>
+  <td><code>slow52_conditional_gld50_sector_q25_diversified_v4_causal</code></td>
+  <td>2026-08-28</td>
+  <td>risk_on; hold SOXX 100.0%; gross 1.00x</td>
+  <td>shadow, 1x, no production authority</td>
+</tr>
+<tr>
+  <td><code>state_probability_shrinkage_v4</code></td>
+  <td>2026-08-28</td>
+  <td>V3 100.0% / production comparator 0.0%; gross 1.00x</td>
+  <td>shadow, 1x, no production authority</td>
+</tr>
+<tr>
+  <td><code>slow52_wta_gld20_v2_causal</code></td>
+  <td>2026-08-28</td>
+  <td>hold GLD 20.0%, SOXX 80.0%; gross 1.00x</td>
+  <td>shadow, 1x, no production authority</td>
+</tr>
+<tr>
+  <td><code>core8_price_margin_buffer_v1</code></td>
+  <td>2026-08-28</td>
+  <td>shadow hold SOXX 44.5%, SPY 55.5%; gross 1.00x; leader SOXX</td>
+  <td>shadow, 1x, no production authority</td>
+</tr>
+<tr>
+  <td><code>core8_price_buffered_top1</code></td>
+  <td>2026-08-21</td>
+  <td>shadow hold SOXX 49.8%, SPY 50.2%; gross 1.00x; leader SOXX</td>
+  <td>shadow, 1x, no production authority</td>
+</tr>
+</tbody>
+</table>
+<h2>Regime evidence</h2>
+<table>
+<thead>
+<tr>
+  <th>State</th>
+  <th style="text-align:right">Validation candidate/parent/increment</th>
+  <th style="text-align:right">Confirmation candidate/parent/increment</th>
+  <th>Conclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Bull</td>
+  <td style="text-align:right">3.4% / -25.1% / 28.5%</td>
+  <td style="text-align:right">62.3% / 40.6% / 21.6%</td>
+  <td>cross-phase non-negative</td>
+</tr>
+<tr>
+  <td>Monkey/range</td>
+  <td style="text-align:right">51.8% / 56.2% / -4.5%</td>
+  <td style="text-align:right">71.3% / 60.5% / 10.7%</td>
+  <td>cross-phase unstable</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Bear, panic-down and panic-rebound samples remain insufficient; no pseudo-precise win share is reported.</li>
+</ul>
+<h2>SPX probability and level capability</h2>
+<ul>
+<li>Next-session interval: signal <strong>2026-08-28</strong>, target <strong>2026-08-31</strong>, range <strong>7625.87–7800.36</strong>.</li>
+<li>Interval freshness: <strong>the current next-session forecast is available</strong>.</li>
+<li>Q98 level probabilities remain semantic market context. Top-rejection and option augmentation do not control leverage because their cross-phase economic gates failed.</li>
+</ul>
+<h2>SPX timing increment on the US-stock trade policy</h2>
+<ul>
+<li>Status: <strong>SPX_BOTTOM_BUDGET_INCREMENT_CONFIRMED_HISTORICAL_SHADOW</strong>; data through <strong>2026-08-28</strong>; production action <strong>NO_CHANGE_SHADOW_ONLY</strong>.</li>
+<li>The published relative-bottom and relative-top booleans are consumed unchanged with no threshold search; entry guard and sell-exit effects are audited separately.</li>
+</ul>
+<table>
+<thead>
+<tr>
+  <th>Phase</th>
+  <th style="text-align:right">Baseline mean/PF/5% return</th>
+  <th style="text-align:right">Combined SPX guard mean/PF/5% return</th>
+  <th style="text-align:right">Mean increment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Validation</td>
+  <td style="text-align:right">1.1% / 1.20 / -15.6%</td>
+  <td style="text-align:right">1.2% / 1.22 / -15.5%</td>
+  <td style="text-align:right">+0.09 pp</td>
+</tr>
+<tr>
+  <td>Confirmation</td>
+  <td style="text-align:right">2.0% / 1.38 / -15.8%</td>
+  <td style="text-align:right">1.5% / 1.28 / -15.8%</td>
+  <td style="text-align:right">-0.55 pp</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Combined top guard/exit: validation <strong>PASS</strong>, confirmation <strong>FAIL</strong>; that deletion/exit increment remains unconfirmed.</li>
+<li>Top-active entry guard: <strong>FAIL</strong>. Sell-exit metrics pass both phases: <strong>NO</strong>, but only <strong>1/5</strong> independent SPX sell events occur in validation/confirmation and the event-coverage gate <strong>fails</strong>. It remains a shadow candidate.</li>
+<li>The fixed 1.25x post-SPX-bottom budget tilt, funded by a selection-only reduction on other trades, improves validation/confirmation mean return by <strong>+0.10 pp / +0.26 pp</strong>. It retains every stock trade and has <strong>4/4</strong> independent bottom events; historical increment is <strong>CONFIRMED SHADOW</strong>, with forward freeze still required before production.</li>
+</ul>
+</article>
+<footer class="report-footer">Research output, not investment advice. Historical and shadow results are not promises of future performance.</footer></main>
+<script src="model-showcase-current.js?v=20260901" defer></script></body></html>
