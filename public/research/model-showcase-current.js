@@ -154,6 +154,14 @@
     },
   };
 
+  if (!document.querySelector('.research-brand')) {
+    const navigation = document.createElement('nav');
+    navigation.className = 'research-brand';
+    navigation.setAttribute('aria-label', 'Portfolio navigation');
+    navigation.innerHTML = '<a class="research-wordmark" href="../#about" aria-label="Yingge Hu — home">yh<span>.</span></a><span class="research-brand-label">Yingge Hu / Research</span><a class="research-home-link" href="../#projects">← Back to selected work</a>';
+    document.querySelector('main')?.prepend(navigation);
+  }
+
   const config = configs[pageKey];
   if (!config || document.querySelector('.model-showcase')) return;
 

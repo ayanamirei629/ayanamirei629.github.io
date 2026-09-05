@@ -1,14 +1,7 @@
 import { useTranslation } from 'react-i18next';
+import { ArrowUp } from 'lucide-react';
 
 export default function Footer() {
-  const { t } = useTranslation();
-
-  return (
-    <footer className="border-t border-white/5 py-8 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-600 text-sm">
-        <p>&copy; 2025 {t('footer.copyright')}</p>
-        <p>{t('footer.builtWith')}</p>
-      </div>
-    </footer>
-  );
+  const { t, i18n } = useTranslation();
+  return <footer className="site-footer"><div className="site-container"><p>&copy; {new Date().getFullYear()} {t('footer.copyright')}</p><a href="#about">{i18n.resolvedLanguage === 'zh' ? '返回顶部' : 'Back to top'}<ArrowUp size={15} /></a></div></footer>;
 }

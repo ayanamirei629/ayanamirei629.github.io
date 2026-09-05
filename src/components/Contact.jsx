@@ -1,71 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, MessageCircle, Instagram } from 'lucide-react';
+import { ArrowUpRight, Github, Linkedin, MessageCircle, Instagram, MapPin } from 'lucide-react';
 
 const links = [
-  { icon: Github, href: 'https://github.com/ayanamirei629', label: 'GitHub', handle: 'ayanamirei629' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/yinggehu/', label: 'LinkedIn', handle: 'yinggehu' },
-  { icon: MessageCircle, href: 'https://wa.me/16478601462', label: 'WhatsApp', handle: '+1 647-860-1462' },
-  { icon: Instagram, href: 'https://instagram.com/craighooo', label: 'Instagram', handle: 'craighooo' },
-  { icon: Mail, href: 'mailto:yhu893@uwo.ca', label: 'Email', handle: 'yhu893@uwo.ca' },
+  { icon: Github, href: 'https://github.com/ayanamirei629', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/yinggehu/', label: 'LinkedIn' },
+  { icon: MessageCircle, href: 'https://wa.me/16478601462', label: 'WhatsApp' },
+  { icon: Instagram, href: 'https://instagram.com/craighooo', label: 'Instagram' },
 ];
 
 export default function Contact() {
-  const { i18n } = useTranslation();
-  const isZh = i18n.language === 'zh';
-
-  return (
-    <section id="contact" className="py-24 px-6">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-            {isZh ? '联系方式' : 'Get in Touch'}
-          </h2>
-          <p className="text-slate-500 text-lg">
-            {isZh ? '欢迎随时联系我' : 'Feel free to reach out through any platform'}
-          </p>
-        </motion.div>
-
-        <div className="flex flex-wrap justify-center gap-4">
-          {links.map(({ icon: Icon, href, label, handle }, i) => (
-            <motion.a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              whileHover={{ y: -3 }}
-              className="flex items-center gap-3 bg-dark-800/50 border border-white/5 rounded-xl px-5 py-3 hover:border-accent-400/20 transition-all duration-300 group"
-            >
-              <Icon size={18} className="text-accent-400/60 group-hover:text-accent-400 transition-colors" />
-              <div className="text-left">
-                <p className="text-white text-sm font-medium">{label}</p>
-                <p className="text-slate-500 text-xs">{handle}</p>
-              </div>
-            </motion.a>
-          ))}
-        </div>
-
-        {/* WeChat note */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center text-slate-600 text-sm mt-8"
-        >
-          WeChat: Followtherabbit411
-        </motion.p>
-      </div>
-    </section>
-  );
+  const { t, i18n } = useTranslation();
+  const zh = i18n.resolvedLanguage === 'zh';
+  return <section id="contact" className="contact-section" aria-labelledby="contact-title"><div className="site-container contact-grid"><div><p className="eyebrow">{zh ? '保持联系' : 'GET IN TOUCH'}</p><h2 id="contact-title">{zh ? '从一个想法，\n开始交流。' : 'Good conversations\nstart with an idea.'}</h2><a className="contact-email" href="mailto:yhu893@uwo.ca">yhu893@uwo.ca<ArrowUpRight size={25} /></a><a className="contact-secondary-email" href="mailto:yingge.hu@alumni.utoronto.ca">yingge.hu@alumni.utoronto.ca</a></div><div className="contact-details"><p><MapPin size={16} />{t('hero.location')}</p><a href="tel:+16478601462">+1 647-860-1462</a><div className="contact-socials">{links.map(({ icon: Icon, href, label }) => <a key={label} href={href} target="_blank" rel="noopener noreferrer"><Icon size={17} />{label}<ArrowUpRight size={15} /></a>)}</div><p className="wechat">{zh ? '微信' : 'WeChat'}: Followtherabbit411</p></div></div></section>;
 }

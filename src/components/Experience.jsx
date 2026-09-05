@@ -1,66 +1,21 @@
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { Briefcase } from 'lucide-react';
 import SectionWrapper from './SectionWrapper';
 
 export default function Experience() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const zh = i18n.resolvedLanguage === 'zh';
   const items = t('experience.items', { returnObjects: true });
-
   return (
-    <SectionWrapper id="experience" title={t('experience.title')} subtitle={t('experience.subtitle')}>
-      <div className="max-w-3xl mx-auto space-y-6">
-        {items.map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="group relative bg-dark-800/50 border border-white/5 rounded-2xl p-6 hover:border-accent-400/20 transition-all duration-300"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-accent-400/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative">
-              <div className="flex items-start gap-4 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-accent-400/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <Briefcase size={18} className="text-accent-400" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                    <h3 className="text-white font-semibold">{item.org}</h3>
-                    <span className="text-slate-600 text-xs">{item.period}</span>
-                  </div>
-                  <p className="text-accent-400/80 text-sm font-medium">{item.role}</p>
-                </div>
-              </div>
-              <p className="text-slate-400 text-sm leading-relaxed ml-14">{item.desc}</p>
-              {item.bullets && item.bullets.length > 0 && (
-                <ul className="mt-3 ml-14 space-y-2">
-                  {item.bullets.map((bullet, j) => (
-                    <li key={j} className="text-slate-400 text-sm leading-relaxed flex gap-2">
-                      <span className="text-accent-400/60 mt-1.5 shrink-0 w-1 h-1 rounded-full bg-accent-400/60" />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {item.timeline && item.timeline.length > 0 && (
-                <ol className="relative mt-5 ml-14 border-l border-accent-400/20 space-y-4">
-                  {item.timeline.map((milestone, j) => (
-                    <li key={j} className="pl-5 relative">
-                      <span className="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-dark-800 border-2 border-accent-400" />
-                      <p className="text-accent-400 text-xs font-medium uppercase tracking-wider">
-                        {milestone.date}
-                      </p>
-                      <p className="mt-1 text-slate-400 text-sm leading-relaxed">{milestone.text}</p>
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </div>
-          </motion.div>
-        ))}
-      </div>
+    <SectionWrapper id="experience" title={zh ? '研究与工作经历' : 'Research & experience'} subtitle={zh ? '在学术探索与工程实践之间。' : 'At the intersection of research and engineering.'}>
+      <div className="experience-list">{items.map((item, i) => <article key={item.org} className="experience-row">
+        <div className="experience-meta"><span className="experience-dot" /><p>{item.period}</p><span>{String(i + 1).padStart(2, '0')}</span></div>
+        <div className="experience-content"><p className="experience-role">{item.role}</p><h3>{item.org}</h3><p className="experience-description">{item.desc}</p>
+          {(item.bullets?.length > 0 || item.timeline?.length > 0) && <details className="detail-disclosure"><summary>{zh ? '贡献与研究过程' : 'Contributions & research process'}</summary>
+            {item.bullets?.length > 0 && <ul className="experience-bullets">{item.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul>}
+            {item.timeline?.length > 0 && <ol className="milestones">{item.timeline.map(milestone => <li key={milestone.date}><span>{milestone.date}</span><p>{milestone.text}</p></li>)}</ol>}
+          </details>}
+        </div>
+      </article>)}</div>
     </SectionWrapper>
   );
 }

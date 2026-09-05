@@ -6,7 +6,7 @@
     "projects": "项目",
     "activity": "活动",
     "skills": "技能",
-    "publications": "Paper",
+    "publications": "研究报告",
     "reading": "阅读",
     "contact": "联系"
   },
@@ -17,9 +17,9 @@
     "email2": "yingge.hu@alumni.utoronto.ca",
     "phone": "647-860-1462",
     "location": "安大略省伦敦市 / 安大略省多伦多市",
-    "summary": "云数据工程/架构，机器学习,数据管理。",
+    "summary": "探索数据库系统、差分隐私与机器学习，将研究想法转化为可靠的数据系统。",
     "backgroundHint": "移动以弯曲吸积盘光线",
-    "viewWork": "近期个人作品",
+    "viewWork": "探索研究成果",
     "resume": "下载简历",
     "contactMe": "联系我"
   },
@@ -31,17 +31,44 @@
         "date": "2026年7月",
         "text": "发布AI时代市场状态自适应量化研究的最新公开结果。报告只展示证据与验证状态，不公开内部实现逻辑。",
         "link": "research/quant-report-portal.html",
-        "linkLabel": "查看今日报告"
+        "linkLabel": "查看公开报告"
       },
-      { "date": "2026年1月", "text": "在韦仕敦大学 (Western University) 数据库实验室 Mostafa Milani 教授的指导下，开展关于差分隐私的新研究。" },
-      { "date": "2025年9月", "text": "开始在韦仕敦大学攻读计算机科学理学硕士学位。" },
-      { "date": "2025年6月", "text": "毕业于多伦多大学电气与计算机工程专业。" },
-      { "date": "2025年6月", "text": "获得加拿大工程师铁戒指 (Iron Ring)。" },
-      { "date": "2025年4月", "text": "成功完成了关于心脏 MRI 去噪（使用 Restormer 和 Swin-UNet）以及脑部 MRI 肿瘤分类的深度研究项目。" },
-      { "date": "2024年9月", "text": "担任多伦多大学机器人协会 (UTRA) 网站主管。" },
-      { "date": "2023年9月", "text": "在多伦多大学 Far Data Lab 张教授的指导下，开始关于存算分离数据库系统网络瓶颈的新研究。" },
-      { "date": "2021年9月", "text": "开始在可口可乐 O2O 团队担任数据工程师实习生。" },
-      { "date": "2018年9月", "text": "志愿为《最终幻想14》(FF14) 建立绘画社区并更新每周活动。" }
+      {
+        "date": "2026年1月",
+        "text": "在韦仕敦大学 (Western University) 数据库实验室 Mostafa Milani 教授的指导下，开展关于差分隐私的新研究。"
+      },
+      {
+        "date": "2025年9月",
+        "text": "开始在韦仕敦大学攻读计算机科学理学硕士学位。"
+      },
+      {
+        "date": "2025年6月",
+        "text": "毕业于多伦多大学电气与计算机工程专业。"
+      },
+      {
+        "date": "2025年6月",
+        "text": "获得加拿大工程师铁戒指 (Iron Ring)。"
+      },
+      {
+        "date": "2025年4月",
+        "text": "成功完成了关于心脏 MRI 去噪（使用 Restormer 和 Swin-UNet）以及脑部 MRI 肿瘤分类的深度研究项目。"
+      },
+      {
+        "date": "2024年9月",
+        "text": "担任多伦多大学机器人协会 (UTRA) 网站主管。"
+      },
+      {
+        "date": "2023年9月",
+        "text": "在多伦多大学 Far Data Lab 张教授的指导下，开始关于存算分离数据库系统网络瓶颈的新研究。"
+      },
+      {
+        "date": "2021年9月",
+        "text": "开始在可口可乐 O2O 团队担任数据工程师实习生。"
+      },
+      {
+        "date": "2018年9月",
+        "text": "志愿为《最终幻想14》(FF14) 建立绘画社区并更新每周活动。"
+      }
     ]
   },
   "education": {
@@ -77,11 +104,26 @@
         "desc": "设计并评估面向美股的市场状态自适应研究系统，重点关注因果时序、滚动样本外验证、回撤约束配置，以及数值结果与可部署证据之间的严格区分。",
         "bullets": [],
         "timeline": [
-          { "date": "2026年3月", "text": "定义研究契约、历史时点数据检查和下一交易日执行口径。" },
-          { "date": "2026年4月", "text": "建立持续市场状态与情绪诊断，并采用过滤概率和样本外评估。" },
-          { "date": "2026年5月", "text": "扩充分市场策略证据总表，包括防御与双向研究组合。" },
-          { "date": "2026年6月", "text": "在purge、embargo与回撤约束下测试个股选择、状态转换和杠杆层。" },
-          { "date": "2026年7月", "text": "完成AI时代证据审计，退出低于基准的整合器并发布公开安全版结果。" }
+          {
+            "date": "2026年3月",
+            "text": "定义研究契约、历史时点数据检查和下一交易日执行口径。"
+          },
+          {
+            "date": "2026年4月",
+            "text": "建立持续市场状态与情绪诊断，并采用过滤概率和样本外评估。"
+          },
+          {
+            "date": "2026年5月",
+            "text": "扩充分市场策略证据总表，包括防御与双向研究组合。"
+          },
+          {
+            "date": "2026年6月",
+            "text": "在purge、embargo与回撤约束下测试个股选择、状态转换和杠杆层。"
+          },
+          {
+            "date": "2026年7月",
+            "text": "完成AI时代证据审计，退出低于基准的整合器并发布公开安全版结果。"
+          }
         ]
       },
       {
@@ -113,7 +155,7 @@
       {
         "org": "多伦多大学机器人协会 (UTRA)",
         "role": "网站主管",
-        "period": "2024年10月 – 2025年6月",
+        "period": "2024 – 2025",
         "desc": "使用 HTML5 重新设计并现代化了俱乐部网站。",
         "bullets": []
       }
@@ -124,30 +166,52 @@
     "subtitle": "精选技术项目与研究工作",
     "items": [
       {
-        "name": "AI时代市场状态自适应量化研究",
+        "name": "市场状态自适应量化研究",
         "tag": "量化研究",
         "tech": "时间序列, 滚动样本外验证, 风险配置",
         "desc": "围绕市场状态、策略选择与回撤约束敞口进行证据优先研究。公开报告展示最新结果、基准比较与验证边界，同时保留内部实现。",
         "link": "research/quant-report-portal.html",
-        "linkLabel": "查看最新公开报告"
+        "linkLabel": "查看最新公开报告",
+        "id": "quant",
+        "shortDesc": "通过滚动样本外验证，研究市场状态、策略选择与回撤约束配置。公开报告记录研究结果、基准比较及验证边界。"
       },
       {
-        "name": "心脏 MRI 去噪与脑肿瘤分类",
+        "name": "数据系统中的隐私保护",
+        "tag": "差分隐私",
+        "tech": "Pufferfish, Blowfish, 数据管理",
+        "desc": "在韦仕敦大学 DB Lab，围绕 Pufferfish 与 Blowfish 框架探索数据管理中的隐私保护机制。",
+        "id": "privacy",
+        "shortDesc": "在韦仕敦大学 DB Lab，围绕 Pufferfish 与 Blowfish 框架探索数据管理中的隐私保护机制。"
+      },
+      {
+        "name": "存算分离数据库性能分析",
+        "tag": "数据库系统",
+        "tech": "eBPF, TiDB, CloudLab",
+        "desc": "构建基于 eBPF 的 TCP/IP/MAC 跨层延迟追踪工具，在 CloudLab 部署和评估 TiDB。通过源码插桩、Prometheus 指标与 TPC-C 实验，研究网络开销和存储位置对分布式事务的影响。",
+        "id": "database",
+        "shortDesc": "构建 eBPF 追踪工具，在 CloudLab 评估 TiDB，理解网络与存储如何影响分布式事务性能。"
+      },
+      {
+        "name": "MRI 去噪与肿瘤分类",
         "tag": "深度学习",
-        "tech": "Python, PyTorch, Restormer, Swin-UNet, MaxViT, Grad-CAM++",
-        "desc": "开发了用于心脏 MRI 的去噪管道，使用代理干净/嘈杂图像对（模拟混合高斯和莱斯噪声）来克服缺乏成对临床数据的问题。在 PSNR 和 SSIM 方面优于经典的 BM3D 算法。进一步评估了代理训练的 Restormer 对使用 MaxViT 进行下游 4 类脑肿瘤分类的影响，利用 Grad-CAM++ 和定量注意力指标来分析空间证据的使用情况。"
+        "tech": "PyTorch, Restormer, Swin-UNet, MaxViT, Grad-CAM++",
+        "desc": "开发了用于心脏 MRI 的去噪管道，使用代理干净/嘈杂图像对（模拟混合高斯和莱斯噪声）来克服缺乏成对临床数据的问题。在 PSNR 和 SSIM 方面优于经典的 BM3D 算法。进一步评估了代理训练的 Restormer 对使用 MaxViT 进行下游 4 类脑肿瘤分类的影响，利用 Grad-CAM++ 和定量注意力指标来分析空间证据的使用情况。",
+        "id": "mri",
+        "shortDesc": "使用 Restormer 与 Swin-UNet 探索基于代理数据的 MRI 去噪，结合 MaxViT 与 Grad-CAM++ 研究可解释的脑肿瘤分类。"
       },
       {
         "name": "智能腕带睡眠检测",
         "tag": "机器学习 / 时间序列",
         "tech": "Python, RCNN",
-        "desc": "开发了一种利用加速度计数据的睡眠检测模型，实现结合 CNN 和 RNN 的 RCNN 架构进行时间序列分析。"
+        "desc": "开发了一种利用加速度计数据的睡眠检测模型，实现结合 CNN 和 RNN 的 RCNN 架构进行时间序列分析。",
+        "id": "sleep"
       },
       {
         "name": "游客地图：GIS 应用程序",
         "tag": "系统",
         "tech": "C++, 敏捷开发 (Agile)",
-        "desc": "构建了一个地理信息系统 (GIS)，具有路径高亮显示功能，并实现了用于最短路径解决方案的 A* 算法。"
+        "desc": "构建了一个地理信息系统 (GIS)，具有路径高亮显示功能，并实现了用于最短路径解决方案的 A* 算法。",
+        "id": "gis"
       }
     ]
   },
@@ -171,7 +235,7 @@
     ]
   },
   "publications": {
-    "title": "研究论文",
+    "title": "研究报告",
     "subtitle": "我的研究与项目报告，可供下载",
     "items": [
       {
@@ -195,16 +259,34 @@
     "title": "技能",
     "subtitle": "技术能力与专长",
     "categories": [
-      { "name": "编程语言", "items": "C, C++, Python" },
-      { "name": "云与平台", "items": "Azure, GCP, Databricks" },
-      { "name": "数据工程", "items": "数据管道 (Data Pipeline), ETL, HiveSQL, PySpark" },
-      { "name": "数据库概念", "items": "分布式数据库, 存算分离数据库 (Disaggregated Database)" },
-      { "name": "机器学习平台", "items": "PyTorch" },
-      { "name": "机器学习概念", "items": "计算机视觉 (Computer Vision), 可解释性 AI (Explainable AI)" }
+      {
+        "name": "编程语言",
+        "items": "C, C++, Python"
+      },
+      {
+        "name": "云与平台",
+        "items": "Azure, GCP, Databricks"
+      },
+      {
+        "name": "数据工程",
+        "items": "数据管道 (Data Pipeline), ETL, HiveSQL, PySpark"
+      },
+      {
+        "name": "数据库概念",
+        "items": "分布式数据库, 存算分离数据库 (Disaggregated Database)"
+      },
+      {
+        "name": "机器学习平台",
+        "items": "PyTorch"
+      },
+      {
+        "name": "机器学习概念",
+        "items": "计算机视觉 (Computer Vision), 可解释性 AI (Explainable AI)"
+      }
     ]
   },
   "personal": {
-    "title": "个人特质",
+    "title": "研究之外",
     "subtitle": "代码之外",
     "items": [
       "分析能力强且注重细节。",
@@ -234,12 +316,30 @@
     "title": "近期书籍阅读",
     "subtitle": "塑造我思维的书籍",
     "items": [
-      { "en": "别让我走", "author": "石黑一雄" },
-      { "en": "麦田里的守望者", "author": "J.D. 塞林格" },
-      { "en": "解忧杂货店", "author": "东野圭吾" },
-      { "en": "心", "author": "夏目漱石" },
-      { "en": "湖", "author": "川端康成" },
-      { "en": "雪国", "author": "川端康成" }
+      {
+        "en": "别让我走",
+        "author": "石黑一雄"
+      },
+      {
+        "en": "麦田里的守望者",
+        "author": "J.D. 塞林格"
+      },
+      {
+        "en": "解忧杂货店",
+        "author": "东野圭吾"
+      },
+      {
+        "en": "心",
+        "author": "夏目漱石"
+      },
+      {
+        "en": "湖",
+        "author": "川端康成"
+      },
+      {
+        "en": "雪国",
+        "author": "川端康成"
+      }
     ]
   },
   "footer": {

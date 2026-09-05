@@ -13,31 +13,34 @@ import Personal from './components/Personal';
 import Reading from './components/Reading';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { MotionConfig } from 'framer-motion';
 
 function App() {
   return (
-    <div className="relative isolate min-h-screen bg-dark-950 text-slate-200">
-      <BlackHoleBackground />
-      <div
-        className="fixed inset-0 z-[1] pointer-events-none bg-[radial-gradient(circle_at_83%_47%,transparent_0%,rgba(3,3,3,0.035)_34%,rgba(3,3,3,0.26)_100%)]"
-        aria-hidden="true"
-      />
-      <div className="relative z-10">
-        <Navbar />
-        <Hero />
-        <News />
-        <Education />
-        <Experience />
-        <Projects />
-        <Activity />
-        <Publications />
-        <Skills />
-        <Personal />
-        <Reading />
-        <Contact />
-        <Footer />
+    <MotionConfig reducedMotion="user">
+      <div className="site-root">
+        <BlackHoleBackground />
+        <div className="relative z-10">
+          <Navbar />
+          <main id="main-content" tabIndex={-1}>
+            <Hero />
+            <div className="content-surface">
+              <Projects />
+              <News />
+              <Experience />
+              <Education />
+              <Publications />
+              <Skills />
+              <Activity />
+              <Personal />
+              <Reading />
+              <Contact />
+            </div>
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </MotionConfig>
   );
 }
 

@@ -1,19 +1,13 @@
-import { motion } from 'framer-motion';
+const indices = { projects: '01', news: '02', experience: '03', education: '04', publications: '05', skills: '06', activity: '07', personal: '08', reading: '09', contact: '10' };
 
-export default function SectionWrapper({ id, title, subtitle, children, className = '' }) {
+export default function SectionWrapper({ id, title, subtitle, children, className = '', action }) {
   return (
-    <section id={id} className={`py-24 px-6 ${className}`}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">{title}</h2>
-          {subtitle && <p className="text-slate-500 text-lg">{subtitle}</p>}
-        </motion.div>
+    <section id={id} aria-labelledby={id + '-title'} className={'content-section ' + className}>
+      <div className="site-container">
+        <div className="section-heading">
+          <div className="section-heading-main"><span className="section-index" aria-hidden="true">{indices[id]}</span><div><h2 id={id + '-title'}>{title}</h2>{subtitle && <p>{subtitle}</p>}</div></div>
+          {action}
+        </div>
         {children}
       </div>
     </section>

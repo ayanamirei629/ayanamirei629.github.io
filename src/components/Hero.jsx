@@ -1,147 +1,36 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, MessageCircle, Instagram, ChevronDown, FileDown } from 'lucide-react';
-
-const socials = [
-  { icon: Github, href: 'https://github.com/ayanamirei629', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/yinggehu/', label: 'LinkedIn' },
-  { icon: MessageCircle, href: 'https://wa.me/16478601462', label: 'WhatsApp' },
-  { icon: Instagram, href: 'https://instagram.com/craighooo', label: 'Instagram' },
-  { icon: Mail, href: 'mailto:yhu893@uwo.ca', label: 'Email' },
-];
+import { ArrowDown, ArrowUpRight, FileDown, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Hero() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const zh = i18n.resolvedLanguage === 'zh';
   const base = import.meta.env.BASE_URL;
-  const latestReport = `${base}research/quant-report-portal.html`;
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="hidden lg:flex absolute bottom-7 right-8 items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-amber-100/35 select-none" aria-hidden="true">
-        <span className="w-7 h-px bg-amber-200/30" />
-        {t('hero.backgroundHint')}
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          {/* Avatar */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="mx-auto mb-6 w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-accent-400/30 shadow-lg shadow-accent-500/20"
-          >
-            <img
-              src={`${base}avatar.png`}
-              alt="Yingge Hu"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block mb-5 px-4 py-1.5 rounded-full border border-accent-400/20 bg-accent-400/5"
-          >
-            <span className="text-accent-400 text-sm font-medium">{t('hero.title')}</span>
-          </motion.div>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            {t('hero.name')}
-          </h1>
-
-          <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
-            {t('hero.summary')}
-          </p>
-
-          {/* Contact info */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-4 text-sm text-slate-500 mb-10"
-          >
-            <span className="flex items-center gap-1.5"><Mail size={14} />{t('hero.email1')}</span>
-            <span className="hidden sm:inline text-slate-700">|</span>
-            <span className="flex items-center gap-1.5"><Mail size={14} />{t('hero.email2')}</span>
-            <span className="hidden sm:inline text-slate-700">|</span>
-            <span className="flex items-center gap-1.5"><Phone size={14} />{t('hero.phone')}</span>
-            <span className="hidden sm:inline text-slate-700">|</span>
-            <span className="flex items-center gap-1.5"><MapPin size={14} />{t('hero.location')}</span>
-          </motion.div>
-
-          {/* Social icons */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex justify-center gap-4 mb-12"
-          >
-            {socials.map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:text-accent-400 hover:border-accent-400/40 hover:bg-accent-400/5 transition-all duration-300"
-                aria-label={label}
-              >
-                <Icon size={18} />
-              </a>
-            ))}
-          </motion.div>
-
-          {/* CTA buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            <a
-              href={latestReport}
-              className="px-6 py-2.5 bg-accent-500 hover:bg-accent-600 text-white rounded-lg text-sm font-medium transition-colors duration-200 shadow-lg shadow-accent-500/20"
-            >
-              {t('hero.viewWork')}
-            </a>
-            <a
-              href={`${base}files/Resume_YH.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-2.5 border border-accent-400/30 hover:border-accent-400/60 text-accent-400 hover:text-white hover:bg-accent-500/10 rounded-lg text-sm font-medium transition-all duration-200 inline-flex items-center gap-2"
-            >
-              <FileDown size={16} />
-              {t('hero.resume')}
-            </a>
-            <button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-6 py-2.5 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white rounded-lg text-sm font-medium transition-all duration-200"
-            >
-              {t('hero.contactMe')}
-            </button>
-          </motion.div>
+    <section id="about" className="hero">
+      <div className="site-container hero-layout">
+        <motion.div className="hero-copy" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }}>
+          <p className="eyebrow"><span className="status-dot" />{zh ? '计算机科学 · 研究与工程' : 'COMPUTER SCIENCE · RESEARCH & ENGINEERING'}</p>
+          <h1>{zh ? '胡英阁' : 'Yingge Hu'}<span className="hero-period">.</span></h1>
+          <p className="hero-alias">{zh ? 'Yingge Hu / Craig' : 'Also known as Craig'}</p>
+          <p className="hero-description">{zh ? '探索数据库系统、差分隐私与机器学习，将研究想法转化为可靠的数据系统。' : 'Exploring database systems, differential privacy, and machine learning. Turning research into reliable data systems.'}</p>
+          <div className="hero-identity">
+            <img src={base + 'avatar.png'} alt="Yingge Hu" width="48" height="48" />
+            <div><p>{zh ? '计算机科学硕士研究生' : 'MSc in Computer Science'}</p><span>{zh ? '韦仕敦大学 · 加拿大' : 'Western University · Canada'}</span></div>
+          </div>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#projects">{zh ? '探索研究成果' : 'Explore my work'}<ArrowUpRight size={18} /></a>
+            <a className="button button-secondary" href={base + 'files/Resume_YH.pdf'} target="_blank" rel="noopener noreferrer"><FileDown size={17} />{t('hero.resume')}</a>
+          </div>
+          <div className="hero-socials">
+            <a href="https://github.com/ayanamirei629" target="_blank" rel="noopener noreferrer"><Github size={16} />GitHub</a>
+            <a href="https://linkedin.com/in/yinggehu/" target="_blank" rel="noopener noreferrer"><Linkedin size={16} />LinkedIn</a>
+            <a href="mailto:yhu893@uwo.ca"><Mail size={16} />{zh ? '邮件联系' : 'Email'}</a>
+          </div>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <ChevronDown size={24} className="text-slate-600" />
-          </motion.div>
-        </motion.div>
+        <div className="hero-art-label" aria-hidden="true"><span>01 / EVENT HORIZON</span><p>{zh ? '在已知的边界，保持好奇。' : 'Curiosity at the edge of the known.'}</p></div>
       </div>
+      <div className="site-container hero-bottom"><a href="#projects"><ArrowDown size={16} />{zh ? '向下探索' : 'SCROLL TO EXPLORE'}</a><span>{zh ? '数据库 / 隐私 / 机器学习' : 'DATABASES / PRIVACY / MACHINE LEARNING'}</span></div>
     </section>
   );
 }

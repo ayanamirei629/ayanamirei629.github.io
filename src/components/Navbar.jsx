@@ -1,105 +1,70 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Globe, Menu, X } from 'lucide-react';
+import { Globe, Menu, X, ArrowUpRight } from 'lucide-react';
 
-const navKeys = ['about', 'education', 'experience', 'projects', 'activity', 'publications', 'skills', 'reading', 'contact'];
-const sectionIds = ['news', 'education', 'experience', 'projects', 'activity', 'publications', 'skills', 'reading', 'contact'];
+const links = [
+  ['about', 'About', '关于'],
+  ['projects', 'Selected work', '精选项目'],
+  ['experience', 'Experience', '研究经历'],
+  ['reading', 'Reading', '阅读'],
+  ['contact', 'Contact', '联系'],
+];
 
 export default function Navbar() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
+  const zh = i18n.resolvedLanguage === 'zh';
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState('about');
   const [mobileOpen, setMobileOpen] = useState(false);
-
+  const menuRef = useRef(null);
+  const toggleRef = useRef(null);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', onScroll);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8) {
+        setActive('contact');
+        return;
+      }
+      const current = links.map(([id]) => document.getElementById(id)).filter(Boolean).filter(el => el.getBoundingClientRect().top <= window.innerHeight * 0.35).at(-1);
+      if (current) setActive(current.id);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const toggleLang = () => {
-    i18n.changeLanguage(i18n.language === 'en' ? 'zh' : 'en');
-  };
-
-  const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setMobileOpen(false);
-  };
-
+  useEffect(() => {
+    if (!mobileOpen) return undefined;
+    const onKey = event => {
+      if (event.key === 'Escape') { setMobileOpen(false); toggleRef.current?.focus(); }
+    };
+    const onPointer = event => { if (!menuRef.current?.contains(event.target)) setMobileOpen(false); };
+    const wide = window.matchMedia('(min-width: 1024px)');
+    const onResize = () => { if (wide.matches) setMobileOpen(false); };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointer);
+    wide.addEventListener('change', onResize);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+      wide.removeEventListener('change', onResize);
+    };
+  }, [mobileOpen]);
+  const renderLinks = () => links.map(([id, en, cn]) => (
+    <a key={id} href={'#' + id} className={active === id ? 'nav-link is-active' : 'nav-link'} aria-current={active === id ? 'location' : undefined} onClick={() => setMobileOpen(false)}>{zh ? cn : en}</a>
+  ));
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-dark-950/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white font-semibold text-lg tracking-wide hover:text-accent-400 transition-colors">
-          YH
-        </button>
-
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-5">
-          {navKeys.map((key, i) => (
-            <button
-              key={key}
-              onClick={() => scrollTo(sectionIds[i])}
-              className="text-slate-400 text-sm hover:text-white transition-colors duration-200"
-            >
-              {t(`nav.${key}`)}
-            </button>
-          ))}
-          <button
-            onClick={toggleLang}
-            className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-accent-400 transition-colors duration-200 ml-2 px-3 py-1.5 rounded-full border border-white/10 hover:border-accent-400/40"
-          >
-            <Globe size={14} />
-            <span>{i18n.language === 'en' ? '中文' : 'EN'}</span>
-          </button>
+    <header ref={menuRef} className={'site-header ' + (scrolled || mobileOpen ? 'is-scrolled' : '')}>
+      <a href="#main-content" className="skip-link">{zh ? '跳至正文' : 'Skip to content'}</a>
+      <nav className="site-container nav-inner" aria-label={zh ? '主导航' : 'Main navigation'}>
+        <a href="#about" className="wordmark" aria-label={zh ? '胡英阁 — 首页' : 'Yingge Hu — home'} onClick={() => setMobileOpen(false)}>yh<span>.</span></a>
+        <div className="desktop-nav">{renderLinks()}</div>
+        <div className="nav-controls">
+          <button className="language-button" onClick={() => i18n.changeLanguage(zh ? 'en' : 'zh')} aria-label={zh ? 'Switch to English' : '切换至中文'}><Globe size={15} /><span>{zh ? 'EN' : '中文'}</span></button>
+          <a className="nav-contact" href="mailto:yhu893@uwo.ca">{zh ? '邮件联系' : 'Let’s talk'}<ArrowUpRight size={16} /></a>
+          <button ref={toggleRef} className="menu-toggle" aria-label={mobileOpen ? (zh ? '关闭菜单' : 'Close menu') : (zh ? '打开菜单' : 'Open menu')} aria-expanded={mobileOpen} aria-controls="mobile-navigation" onClick={() => setMobileOpen(!mobileOpen)}>{mobileOpen ? <X size={22} /> : <Menu size={22} />}</button>
         </div>
-
-        {/* Mobile toggle */}
-        <div className="flex md:hidden items-center gap-3">
-          <button
-            onClick={toggleLang}
-            className="text-slate-400 hover:text-accent-400 transition-colors px-2 py-1 rounded-full border border-white/10 text-sm flex items-center gap-1"
-          >
-            <Globe size={14} />
-            {i18n.language === 'en' ? '中文' : 'EN'}
-          </button>
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-slate-300">
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-dark-950/95 backdrop-blur-xl border-b border-white/5 overflow-hidden"
-          >
-            <div className="px-6 py-4 flex flex-col gap-3">
-              {navKeys.map((key, i) => (
-                <button
-                  key={key}
-                  onClick={() => scrollTo(sectionIds[i])}
-                  className="text-slate-400 text-sm hover:text-white transition-colors text-left py-1"
-                >
-                  {t(`nav.${key}`)}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+      </nav>
+      {mobileOpen && <nav id="mobile-navigation" className="mobile-nav site-container" aria-label={zh ? '移动导航' : 'Mobile navigation'}>{renderLinks()}</nav>}
+    </header>
   );
 }

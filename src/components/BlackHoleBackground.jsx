@@ -97,6 +97,7 @@ export default function BlackHoleBackground() {
     let resizeFrameId = 0;
     let lastRender = 0;
     let documentVisible = !document.hidden;
+    let sceneVisible = true;
     let reducedMotion = reducedMotionQuery.matches;
     let coarsePointer = coarsePointerQuery.matches;
     let mobileScene = false;
@@ -809,7 +810,7 @@ export default function BlackHoleBackground() {
       drawPointerLens(time);
       if (veilLayer) context.drawImage(veilLayer, 0, 0, width, height);
 
-      if (!staticFrame && !reducedMotion && documentVisible) {
+      if (!staticFrame && !reducedMotion && documentVisible && sceneVisible) {
         frameId = window.requestAnimationFrame(drawFrame);
       }
     }
@@ -818,7 +819,7 @@ export default function BlackHoleBackground() {
       window.cancelAnimationFrame(frameId);
       lastRender = 0;
       if (reducedMotion) drawFrame(0, true);
-      else if (documentVisible) frameId = window.requestAnimationFrame(drawFrame);
+      else if (documentVisible && sceneVisible) frameId = window.requestAnimationFrame(drawFrame);
     }
 
     function handlePointerMove(event) {
@@ -860,6 +861,13 @@ export default function BlackHoleBackground() {
 
     function handleScroll() {
       updateScrollProgress();
+      const heroHeight = document.getElementById('about')?.offsetHeight || height;
+      canvas.style.opacity = String(1 - clamp(window.scrollY / heroHeight, 0, 1));
+      const nextVisible = window.scrollY < heroHeight;
+      if (nextVisible !== sceneVisible) {
+        sceneVisible = nextVisible;
+        restartAnimation();
+      }
     }
 
     function handleVisibilityChange() {
@@ -876,6 +884,7 @@ export default function BlackHoleBackground() {
       window.cancelAnimationFrame(resizeFrameId);
       resizeFrameId = window.requestAnimationFrame(() => {
         setupScene();
+        handleScroll();
         restartAnimation();
       });
     }
@@ -888,6 +897,7 @@ export default function BlackHoleBackground() {
     reducedMotionQuery.addEventListener('change', handleMotionPreference);
 
     setupScene();
+    handleScroll();
     restartAnimation();
 
     return () => {
