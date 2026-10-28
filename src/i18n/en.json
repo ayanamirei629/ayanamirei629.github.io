@@ -28,6 +28,22 @@
     "subtitle": "A timeline of my academic and professional journey",
     "items": [
       {
+        "date": "Oct 2026",
+        "text": "Submitted Soft Voting for Policy-Aware Private Data Synthesis to EDBT 2027 as first author. The paper introduces BF-Soft and studies when soft voting benefits policy-aware privacy. Submission pending acceptance.",
+        "link": "#paper",
+        "linkLabel": "Explore the paper"
+      },
+      {
+        "date": "Oct 2026",
+        "text": "Golden Finger / P8 now runs through an IBKR paper-trading workflow with versioned rules, signal provenance and pre-trade checks. Forward results are tracked separately after the version cutover.",
+        "link": "#quant-project",
+        "linkLabel": "View the P8 paper snapshot"
+      },
+      {
+        "date": "Sept 2026",
+        "text": "Completed the MSc in Computer Science at Western University with a GPA of 4.0/4.0."
+      },
+      {
         "date": "Jul 2026",
         "text": "Published the latest public result from my AI-era, regime-aware quantitative research. The brief reports evidence and validation status without exposing implementation logic.",
         "link": "research/quant-report-portal.html",
@@ -80,7 +96,7 @@
         "location": "London, ON",
         "period": "Sept 2025 – Sept 2026",
         "degree": "Master of Science in Computer Science",
-        "gpa": "CGPA: 4.0",
+        "gpa": "GPA: 4.0/4.0",
         "courses": "Relevant Coursework: Data Management, Advanced Machine Learning"
       },
       {
@@ -100,8 +116,8 @@
       {
         "org": "Independent Quantitative Research",
         "role": "Quantitative Researcher & Engineer",
-        "period": "Mar 2026 – Jul 2026",
-        "desc": "Designed and evaluated a regime-aware research system for U.S. equities, emphasizing causal timing, walk-forward validation, drawdown-aware allocation and explicit separation between numerical results and deployable evidence.",
+        "period": "Mar 2026 – Present",
+        "desc": "Developing point-in-time U.S. equity research with walk-forward validation and drawdown controls, alongside the Golden Finger / P8 paper portfolio system with signal provenance, versioned specifications and execution checks.",
         "bullets": [],
         "timeline": [
           {
@@ -123,15 +139,22 @@
           {
             "date": "Jul 2026",
             "text": "Completed the AI-era evidence audit, retired below-benchmark integrators and published a public-safe result brief."
+          },
+          {
+            "date": "Oct 2026",
+            "text": "Introduced the P8 paper-execution workflow, separating historical research from its post-cutover forward record."
           }
         ]
       },
       {
         "org": "Western University DB Lab",
         "role": "Research Assistant",
-        "period": "Jan 2026 – Sept 2026",
-        "desc": "Conducting research on Differential Privacy under the guidance of Professor Mostafa Milani, investigating privacy-preserving mechanisms for data management systems.",
-        "bullets": []
+        "period": "Jan 2026 – Present",
+        "desc": "Researching policy-aware private data synthesis with Professor Mostafa Milani. First author of the BF-Soft paper, submitted to EDBT 2027 in October 2026.",
+        "bullets": [
+          "Derived a tight closed-form sensitivity bound in policy-graph reach and temperature, independent of candidate count.",
+          "Evaluated real and synthetic datasets, identifying gains under strong privacy budgets and reversals at weaker budgets."
+        ]
       },
       {
         "org": "University of Toronto Far Data Lab",
@@ -166,14 +189,14 @@
     "subtitle": "Selected technical projects and research work",
     "items": [
       {
-        "name": "Regime-Aware Quantitative Research",
+        "name": "Quantitative research & paper execution",
         "tag": "Quant Research",
-        "tech": "Time Series, Walk-Forward Validation, Risk Allocation",
+        "tech": "Point-in-time Data, Walk-Forward Validation, IBKR Paper",
         "desc": "An evidence-first study of market regimes, strategy selection and drawdown-aware exposure. The public report presents current results, benchmark comparisons and validation limits while keeping the implementation private.",
         "link": "research/quant-report-portal.html",
         "linkLabel": "View latest public report",
         "id": "quant",
-        "shortDesc": "Studying market regimes, strategy selection and drawdown-aware allocation through walk-forward validation. Public reports document results, benchmarks and validation limits."
+        "shortDesc": "Connecting market-regime research and walk-forward validation with auditable portfolio execution. Golden Finger / P8 tracks signals, strategy versions and paper trades through independent records."
       },
       {
         "name": "Privacy in Data Systems",
@@ -181,7 +204,7 @@
         "tech": "Pufferfish, Blowfish, Data Management",
         "desc": "Investigating privacy-preserving data management through the Pufferfish and Blowfish frameworks at Western University’s DB Lab.",
         "id": "privacy",
-        "shortDesc": "Investigating privacy-preserving data management through the Pufferfish and Blowfish frameworks at Western University’s DB Lab."
+        "shortDesc": "Research on Blowfish policy-aware privacy and synthetic data. The first-author BF-Soft paper above presents the latest work."
       },
       {
         "name": "Tracing Database Performance",
@@ -235,7 +258,7 @@
     ]
   },
   "publications": {
-    "title": "Research reports",
+    "title": "Papers & research reports",
     "subtitle": "My research and project reports available for download",
     "items": [
       {

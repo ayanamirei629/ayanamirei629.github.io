@@ -13,6 +13,7 @@ import Personal from './components/Personal';
 import Reading from './components/Reading';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ResearchGuide from './components/ResearchGuide';
 import { MotionConfig } from 'framer-motion';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           </main>
           <Footer />
         </div>
+        <ResearchGuide />
       </div>
     </MotionConfig>
   );

@@ -28,6 +28,22 @@
     "subtitle": "我的学术与职业历程时间线",
     "items": [
       {
+        "date": "2026 年 10 月",
+        "text": "作为第一作者，将《Soft Voting for Policy-Aware Private Data Synthesis》投稿至 EDBT 2027。提出 BF-Soft 并分析软投票在策略感知隐私中的适用条件。当前为投稿状态。",
+        "link": "#paper",
+        "linkLabel": "查看论文"
+      },
+      {
+        "date": "2026 年 10 月",
+        "text": "Golden Finger / P8 接入 IBKR 模拟交易，加入版本化规则、信号来源记录与交易前检查，独立累计版本切换后的前瞻模拟结果。",
+        "link": "#quant-project",
+        "linkLabel": "查看 P8 模拟记录"
+      },
+      {
+        "date": "2026 年 9 月",
+        "text": "完成韦仕敦大学计算机科学理学硕士学位，GPA 4.0/4.0。"
+      },
+      {
         "date": "2026年7月",
         "text": "发布AI时代市场状态自适应量化研究的最新公开结果。报告只展示证据与验证状态，不公开内部实现逻辑。",
         "link": "research/quant-report-portal.html",
@@ -80,7 +96,7 @@
         "location": "安大略省伦敦市",
         "period": "2025年9月 – 2026年9月",
         "degree": "计算机科学理学硕士",
-        "gpa": "CGPA: 4.0",
+        "gpa": "GPA: 4.0/4.0",
         "courses": "相关课程：数据管理、高级机器学习"
       },
       {
@@ -100,8 +116,8 @@
       {
         "org": "独立量化研究",
         "role": "量化研究员与工程师",
-        "period": "2026年3月 – 2026年7月",
-        "desc": "设计并评估面向美股的市场状态自适应研究系统，重点关注因果时序、滚动样本外验证、回撤约束配置，以及数值结果与可部署证据之间的严格区分。",
+        "period": "2026 年 3 月 – 至今",
+        "desc": "开发时点一致的美股研究流程，采用滚动样本外验证与回撤控制；同时构建 Golden Finger / P8 模拟组合系统，记录信号来源、策略版本和执行检查。",
         "bullets": [],
         "timeline": [
           {
@@ -123,15 +139,22 @@
           {
             "date": "2026年7月",
             "text": "完成AI时代证据审计，退出低于基准的整合器并发布公开安全版结果。"
+          },
+          {
+            "date": "2026 年 10 月",
+            "text": "上线 P8 独立模拟执行流程，将历史研究与版本切换后的前瞻记录分开。"
           }
         ]
       },
       {
         "org": "韦仕敦大学 DB Lab",
         "role": "研究助理",
-        "period": "2026年1月 – 2026年9月",
-        "desc": "在 Mostafa Milani 教授的指导下进行差分隐私研究，探索数据管理系统中的隐私保护机制。",
-        "bullets": []
+        "period": "2026 年 1 月 – 至今",
+        "desc": "在 Mostafa Milani 教授指导下研究策略感知的隐私数据合成。作为第一作者提出 BF-Soft 温度平滑投票机制，相关论文于 2026 年 10 月投稿 EDBT 2027。",
+        "bullets": [
+          "研究策略图跨度、温度与敏感度的关系，并给出独立于候选数量的紧致闭式敏感度界。",
+          "在真实与合成数据上评估方法，分析强隐私预算下的优势及较弱预算下的局限。"
+        ]
       },
       {
         "org": "多伦多大学 Far Data Lab",
@@ -166,14 +189,14 @@
     "subtitle": "精选技术项目与研究工作",
     "items": [
       {
-        "name": "市场状态自适应量化研究",
+        "name": "量化研究与模拟执行",
         "tag": "量化研究",
-        "tech": "时间序列, 滚动样本外验证, 风险配置",
+        "tech": "Point-in-time Data, Walk-Forward Validation, IBKR Paper",
         "desc": "围绕市场状态、策略选择与回撤约束敞口进行证据优先研究。公开报告展示最新结果、基准比较与验证边界，同时保留内部实现。",
         "link": "research/quant-report-portal.html",
         "linkLabel": "查看最新公开报告",
         "id": "quant",
-        "shortDesc": "通过滚动样本外验证，研究市场状态、策略选择与回撤约束配置。公开报告记录研究结果、基准比较及验证边界。"
+        "shortDesc": "连接市场状态研究、滚动样本外验证与可审计的组合执行。Golden Finger / P8 用独立记录跟踪每次信号、策略版本与模拟交易。"
       },
       {
         "name": "数据系统中的隐私保护",
@@ -181,7 +204,7 @@
         "tech": "Pufferfish, Blowfish, 数据管理",
         "desc": "在韦仕敦大学 DB Lab，围绕 Pufferfish 与 Blowfish 框架探索数据管理中的隐私保护机制。",
         "id": "privacy",
-        "shortDesc": "在韦仕敦大学 DB Lab，围绕 Pufferfish 与 Blowfish 框架探索数据管理中的隐私保护机制。"
+        "shortDesc": "围绕 Blowfish 策略感知隐私与合成数据开展研究；最新进展见上方 BF-Soft 第一作者论文。"
       },
       {
         "name": "存算分离数据库性能分析",
@@ -235,7 +258,7 @@
     ]
   },
   "publications": {
-    "title": "研究报告",
+    "title": "论文与研究报告",
     "subtitle": "我的研究与项目报告，可供下载",
     "items": [
       {

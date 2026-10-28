@@ -1,0 +1,52 @@
+.research-guide { position: fixed; right: max(24px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); z-index: 45; width: 350px; pointer-events: none; }
+.research-guide button, .research-guide a, .guide-bubble { pointer-events: auto; }
+.guide-bubble { position: relative; margin-bottom: 10px; padding: 19px 21px 14px; background: #f4ecdf; color: #24303b; border: 1px solid #d9bd8f; border-radius: 18px 18px 4px 18px; box-shadow: 0 12px 55px #0005; max-height: calc(100dvh - 230px); overflow-y: auto; overscroll-behavior: contain; animation: guide-reveal .3s ease-out; }
+.guide-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.guide-header > span { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 700; letter-spacing: .09em; }
+.guide-header i, .guide-character-label i { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #3c826e; }
+.guide-header button { display: grid; place-items: center; width: 32px; height: 32px; margin: -4px -8px -4px 0; border-radius: 50%; }
+.guide-header button:hover { background: #24303b0d; }
+.guide-context { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 9px; color: #65716f; letter-spacing: .04em; margin-top: 16px; }
+.guide-context > span { color: #345b52; font-size: 10px; letter-spacing: 0; }
+.guide-message { animation: guide-reveal .25s ease-out; }
+.guide-message h2 { font-size: 23px; font-weight: 600; letter-spacing: -.035em; line-height: 1.25; margin-top: 10px; }
+.guide-message p { font-size: 13px; line-height: 1.85; margin-top: 13px; color: #48535b; }
+.guide-action { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-block: 12px; margin-top: 7px; color: #245f55; font-size: 12px; font-weight: 600; }
+.guide-topics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding-top: 13px; border-top: 1px solid #24303b1a; }
+.guide-topics button { border: 1px solid #cfc7ba; border-radius: 6px; min-height: 34px; padding: 6px 3px; font-size: 10px; color: #4d575b; background: #ffffff38; }
+.guide-topics button[aria-pressed="true"] { background: #253e3c; border-color: #253e3c; color: #f5eedf; }
+.guide-topics button:hover { border-color: #62867a; }
+.guide-utilities { display: flex; align-items: center; gap: 14px; margin-top: 9px; }
+.guide-utilities button { display: flex; align-items: center; gap: 5px; color: #5c6868; min-height: 30px; font-size: 10px; }
+.guide-utilities button:hover { color: #143c33; }
+.guide-speech-error { font-size: 11px; color: #85522c; line-height: 1.6; margin-top: 6px; }
+.guide-character-wrap { display: flex; justify-content: flex-end; position: relative; }
+.guide-character { position: relative; display: flex; flex-direction: column; align-items: center; width: 126px; isolation: isolate; }
+.guide-character img { height: 173px; width: auto; max-width: 125px; object-fit: contain; filter: drop-shadow(0 7px 9px #0006); transform-origin: 50% 90%; animation: guide-breathe 5.5s ease-in-out infinite; }
+.guide-character:hover img, .is-speaking .guide-character img { animation: guide-greet 1.7s ease-in-out infinite; }
+.guide-character-label { display: inline-flex; align-items: center; gap: 6px; margin-top: 3px; padding: 7px 10px; font-size: 10px; color: #e7d5b8; border: 1px solid #bea37660; border-radius: 20px; background: #101720ed; white-space: nowrap; }
+.guide-character-label i { background: #7edbc1; }
+.guide-orbit { position: absolute; inset: auto 12px 33px; height: 18px; border: 1px solid var(--accent); box-shadow: 0 0 15px var(--ambient); opacity: .45; border-radius: 50%; z-index: -1; }
+.guide-minimize { position: absolute; top: 4px; right: -3px; display: grid; place-items: center; height: 28px; width: 28px; border: 1px solid #344352; background: #111c2be6; color: #bbc7d7; border-radius: 50%; z-index: 1; }
+.guide-launcher { display: flex; align-items: center; gap: 8px; padding: 11px 15px; border-radius: 30px; border: 1px solid #6c6252; background: #111923f2; color: #e8d7ba; font-size: 12px; margin-left: auto; box-shadow: 0 4px 18px #0004; }
+.research-guide :focus-visible { outline-color: #46776d; }
+.guide-character:focus-visible, .guide-launcher:focus-visible, .guide-minimize:focus-visible { outline-color: #e0c293; }
+@keyframes guide-breathe { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-5px) rotate(1deg); } }
+@keyframes guide-greet { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
+@keyframes guide-reveal { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1023px) {
+  .research-guide { right: 16px; bottom: max(12px, env(safe-area-inset-bottom)); width: min(350px, calc(100vw - 32px)); }
+  .guide-character img { height: 112px; max-width: 90px; }
+  .guide-character { width: 98px; }
+  .guide-character-label { font-size: 9px; padding: 6px 8px; }
+  .guide-bubble { max-height: calc(100dvh - 183px); }
+  .guide-minimize { top: 0; right: -3px; }
+}
+@media (max-width: 600px) {
+  .guide-character-wrap { display: none; }
+  .research-guide:not(:has(.guide-bubble)) .guide-character-wrap { display: flex; }
+  .guide-bubble { max-height: calc(100dvh - 108px); margin-bottom: 0; padding: 16px 18px 12px; border-radius: 16px; }
+  .guide-topics button { min-height: 38px; }
+  .guide-header button { width: 36px; height: 36px; }
+  .guide-message p { font-size: 13px; }
+}

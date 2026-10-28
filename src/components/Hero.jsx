@@ -16,17 +16,18 @@ export default function Hero() {
           <p className="hero-description">{zh ? '探索数据库系统、差分隐私与机器学习，将研究想法转化为可靠的数据系统。' : 'Exploring database systems, differential privacy, and machine learning. Turning research into reliable data systems.'}</p>
           <div className="hero-identity">
             <img src={base + 'avatar.png'} alt="Yingge Hu" width="48" height="48" />
-            <div><p>{zh ? '计算机科学硕士研究生' : 'MSc in Computer Science'}</p><span>{zh ? '韦仕敦大学 · 加拿大' : 'Western University · Canada'}</span></div>
+            <div><p>{zh ? '计算机科学硕士 · 2026 届' : 'MSc in Computer Science · Class of 2026'}</p><span>{zh ? '韦仕敦大学 · 加拿大' : 'Western University · Canada'}</span></div>
           </div>
           <div className="hero-actions">
             <a className="button button-primary" href="#projects">{zh ? '探索研究成果' : 'Explore my work'}<ArrowUpRight size={18} /></a>
-            <a className="button button-secondary" href={base + 'files/Resume_YH.pdf'} target="_blank" rel="noopener noreferrer"><FileDown size={17} />{t('hero.resume')}</a>
+            <a className="button button-secondary" href={base + 'files/Resume_YH.pdf?v=2026-10-22'} target="_blank" rel="noopener noreferrer"><FileDown size={17} />{t('hero.resume')}</a>
           </div>
           <div className="hero-socials">
             <a href="https://github.com/ayanamirei629" target="_blank" rel="noopener noreferrer"><Github size={16} />GitHub</a>
             <a href="https://linkedin.com/in/yinggehu/" target="_blank" rel="noopener noreferrer"><Linkedin size={16} />LinkedIn</a>
             <a href="mailto:yhu893@uwo.ca"><Mail size={16} />{zh ? '邮件联系' : 'Email'}</a>
           </div>
+          <div className="hero-latest"><span>{zh ? '近况' : 'NOW'}</span><a href="#paper">{zh ? '第一作者 · EDBT 2027 投稿' : 'First-author submission · EDBT 2027'}<ArrowUpRight size={13} /></a><a href="#competition">{zh ? '香港资管比赛' : 'Hong Kong competition'}<ArrowUpRight size={13} /></a></div>
         </motion.div>
         <div className="hero-art-label" aria-hidden="true"><span>01 / EVENT HORIZON</span><p>{zh ? '在已知的边界，保持好奇。' : 'Curiosity at the edge of the known.'}</p></div>
       </div>

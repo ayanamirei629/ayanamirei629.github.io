@@ -98,7 +98,7 @@ export default function BlackHoleBackground() {
     let lastRender = 0;
     let documentVisible = !document.hidden;
     let sceneVisible = true;
-    let reducedMotion = reducedMotionQuery.matches;
+    let reducedMotion = reducedMotionQuery.matches || document.documentElement.dataset.motion === 'paused';
     let coarsePointer = coarsePointerQuery.matches;
     let mobileScene = false;
     let scrollProgress = 0;
@@ -876,7 +876,7 @@ export default function BlackHoleBackground() {
     }
 
     function handleMotionPreference() {
-      reducedMotion = reducedMotionQuery.matches;
+      reducedMotion = reducedMotionQuery.matches || document.documentElement.dataset.motion === 'paused';
       restartAnimation();
     }
 
@@ -895,6 +895,7 @@ export default function BlackHoleBackground() {
     window.addEventListener('pointerout', handlePointerLeave, { passive: true });
     document.addEventListener('visibilitychange', handleVisibilityChange);
     reducedMotionQuery.addEventListener('change', handleMotionPreference);
+    window.addEventListener('portfolio-motion-change', handleMotionPreference);
 
     setupScene();
     handleScroll();
@@ -909,6 +910,7 @@ export default function BlackHoleBackground() {
       window.removeEventListener('pointerout', handlePointerLeave);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       reducedMotionQuery.removeEventListener('change', handleMotionPreference);
+      window.removeEventListener('portfolio-motion-change', handleMotionPreference);
     };
   }, []);
 
